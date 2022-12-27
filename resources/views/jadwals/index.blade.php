@@ -68,11 +68,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $key => $user)
+                                    @foreach ($jadwal as $key => $jdwl)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $jdwl->tahun }}</td>
+                                        <td>{{ $jdwl->tahap }}</td>
+                                        <td>{{ $jdwl->daftar_mulai }}</td>
+                                        <td>{{ $jdwl->daftar_selesai }}</td>
+                                        <td>{{ $jdwl->nilai_mulai }}</td>
+                                        <td>{{ $jdwl->nilai_selesai}}</td>
+                                        <td>{{ $jdwl->sidang_mulai }}</td>
+                                        <td>{{ $jdwl->sidang_selesai }}</td>
                                         <td>
                                             @if(!empty($user->getRoleNames()))
 
