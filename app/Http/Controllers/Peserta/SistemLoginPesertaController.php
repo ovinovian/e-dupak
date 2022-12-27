@@ -35,7 +35,7 @@ class SistemLoginPesertaController extends Controller
 
             if($simpan) {
                 Session::flash('berhasil_masuk', 'Anda telah berhasil mendaftar, silahkan login !');
-                return redirect('/login');
+                return redirect('/auth/login');
             } else {
                 Session::flash('fail', 'Data anda gagal tersimpan');
                 return redirect()->back();
@@ -50,6 +50,7 @@ class SistemLoginPesertaController extends Controller
 
     public function loginVerifikasi(Request $req)
     {
+        // dd($req->all());
         $peserta = DB::table('peserta')
         ->where('email', $req->email)
         ->first();
@@ -63,7 +64,7 @@ class SistemLoginPesertaController extends Controller
                 $req->session()->put('email', $peserta->email);
                 $req->session()->put('nip', $peserta->nip);
                 $req->session()->put('nama_lengkap', $peserta->nama_lengkap);
-                return redirect()->route('dash.peserta')->with(['datas'=>$datas]);
+                return redirect()->route('home')->with(['datas'=>$datas]);
             } else {
                 return back()->with('gagal_login', 'Data Email atau Password anda masukan salah');
             }

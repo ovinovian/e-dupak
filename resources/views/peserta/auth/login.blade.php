@@ -27,7 +27,6 @@
 
                         <!-- Logo -->
                         <div class="card-header pt-4 pb-4 text-center bg-primary">
-                            {{ __('Login') }}
                             <a href="index.html">
                                 <span><img src="{{ asset('assets/images/logo.png') }}" alt="" height="18"></span>
                             </a>
@@ -35,50 +34,47 @@
 
                         <div class="card-body p-4">
 
+                            @if (Session::has('message'))
+                            <div class="alert alert-success">
+                                {{Session::get('message')}}
+                            </div>
+                            @endif
+                        
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
-                                <p class="text-muted mb-4">Masukkan Email dan Password Anda
-                                </p>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold" style="font-weight: bold; color:#000000">Login</h4>
                             </div>
 
-                            <form method="POST" action="{{ route('login') }}">
+                            <form action="{{route('verifikasi.login')}}" method="POST" name="form_login">
+
                                 @csrf
 
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">{{ __('Email Address')
-                                        }}</label>
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+                                    <label for="emailaddress" class="form-label" style="font-weight: bold;color:#000000">Email</label>
+                                    <input class="form-control" type="text" id="emaill" required name="email" placeholder="Masukan Email" style="border: 1px solid rgb(161, 161, 161);">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
-                                        }}</label>
-
+                                    {{-- <a href="{{route('forget.password.get')}}" class="text-muted float-end"><small style="font-weight: bold;color:#000000">Lupa Password?</small></a> --}}
+                                    <label for="password" class="form-label" style="font-weight: bold;color:#000000">Password</label>
                                     <div class="input-group input-group-merge">
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Masukan Password" style="border: 1px solid rgb(161, 161, 161);">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
+                                        
+                                    </div>
+                                    <span class="alertt" style='color: red;'></span>
+                                </div>
 
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
+                                <div class="mb-3 mb-3">
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                        <label class="form-check-label" for="checkbox-signin">Remember me</label>
                                     </div>
                                 </div>
 
-                                <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary" type="submit"> Log In </button>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-primary" type="submit"> Masuk </button>
                                 </div>
 
                             </form>

@@ -37,37 +37,40 @@
                                     <p class="text-muted mb-4">Don't have an account? Create your account, it takes less than a minute </p>
                                 </div>
 
-                                <form action="#">
+                                <div class="text-center w-75 m-auto">
+                                    <h4 class="text-dark-50 text-center mt-0 fw-bold" style="font-weight: bold;color:#000000; margin-bottom:20px">Daftar</h4>
+                                </div>
 
+                                <form action="{{url('/proses_register')}}" method="POST" enctype="multipart/form-data" name="form_regis">
+                                    @csrf
                                     <div class="mb-3">
-                                        <label for="fullname" class="form-label">Full Name</label>
-                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                        <label for="fullname" class="form-label" style="color:#000000">Nama Lengkap</label>
+                                        <input class="form-control" type="text" id="nama_lengkap" name="nama_lengkap" placeholder="Masukan Nama Lengkap" style="border: 1px solid rgb(161, 161, 161);" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="fullname" class="form-label" style="color:#000000">Nomor Identitas Pegawai (NIP)</label>
+                                        <input class="form-control" type="text" id="nip" name="nip" placeholder="Masukan Nomor Indentitas Pegawai" style="border: 1px solid rgb(161, 161, 161);" required>
+                                        <span id="error_nip" style="display: none;color:red"></span>
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
+                                        <label for="emailaddress" class="form-label" style="color:#000000">Email</label>
+                                        <input class="form-control" type="email" id="email" style="border: 1px solid rgb(161, 161, 161);" name="email" required placeholder="Masukan Email">
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">Password</label>
+                                        <label for="password" class="form-label" style="color:#000000">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" id="password" name="password" class="form-control" style="border: 1px solid rgb(161, 161, 161);" placeholder="Masukan Password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
+                                        <span class="alertt" style='color: red;'></span>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signup">
-                                            <label class="form-check-label" for="checkbox-signup">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 text-center">
-                                        <button class="btn btn-primary" type="submit"> Sign Up </button>
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" type="submit"> Daftar </button>
                                     </div>
 
                                 </form>
