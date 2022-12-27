@@ -27,6 +27,13 @@ use App\Http\Controllers\ProductController;
 
 Route::get('/', [App\Http\Controllers\Halaman_landing_page\LandingPageController::class, 'index'])->name('home');
 
+//SISTEM LOGIN
+Route::get('auth/register', [App\Http\Controllers\Peserta\SistemLoginPesertaController::class, 'register_akun'])->name('register.akun');
+Route::post('/proses_register', [App\Http\Controllers\Peserta\SistemLoginPesertaController::class, 'proses_register'])->name('proses.register');
+Route::get('auth/login', [App\Http\Controllers\Peserta\SistemLoginPesertaController::class, 'halaman_login'])->name('login.peserta');
+Route::post('/verifikasilogin', [App\Http\Controllers\Peserta\SistemLoginPesertaController::class, 'loginVerifikasi'])->name('verifikasi.login');
+Route::get('auth/logout', [App\Http\Controllers\Peserta\SistemLoginPesertaController::class, 'log_out'])->name('logout.peserta');
+
 
 Auth::routes();
 
