@@ -58,7 +58,12 @@
                                         <th>No</th>
                                         <th>Tahun</th>
                                         <th>Tahap</th>
-                                        <th>Hak Akses</th>
+                                        <th>Daftar Mulai</th>
+                                        <th>Daftar Selesai</th>
+                                        <th>Nilai Mulai</th>
+                                        <th>Nilai Selesai</th>
+                                        <th>Sidang Mulai</th>
+                                        <th>Sidang Selesai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
