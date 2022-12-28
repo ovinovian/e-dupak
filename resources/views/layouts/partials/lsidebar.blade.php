@@ -61,6 +61,20 @@
             </li>
 
             <li class="side-nav-item">
+                <a href="{{ route('perms.index') }}" class="side-nav-link">
+                    <i class="uil-comments-alt"></i>
+                    <span> Permission </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
+                <a href="{{ route('jadwals.index') }}" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> Jadwal </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false"
                     aria-controls="sidebarEcommerce" class="side-nav-link">
                     <i class="uil-store"></i>

@@ -3,12 +3,10 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\RoleController;
-
 use App\Http\Controllers\UserController;
-
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\PermController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,9 +43,7 @@ Route::group(['middleware' => ['auth']], function() {
     })->name('dashboard');
 
     Route::resource('roles', RoleController::class);
-
     Route::resource('users', UserController::class);
-
-    Route::resource('products', ProductController::class);
-
+    Route::resource('jadwals', JadwalController::class);
+    Route::resource('perms', PermController::class);
 });

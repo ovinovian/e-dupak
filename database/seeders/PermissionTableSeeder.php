@@ -25,13 +25,13 @@ class PermissionTableSeeder extends Seeder
 
            'role-delete',
 
-           'product-list',
+           'perm-list',
 
-           'product-create',
+           'perm-create',
 
-           'product-edit',
+           'perm-edit',
 
-           'product-delete'
+           'perm-delete'
 
         ];
 
