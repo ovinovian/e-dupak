@@ -29,7 +29,8 @@ class PermController extends Controller
     public function index()
     {
         $perms = Permission::all();
-        return view('perms.index',compact('perms'));
+        $i = 0;
+        return view('perms.index',compact('perms','i'));
     }
 
 

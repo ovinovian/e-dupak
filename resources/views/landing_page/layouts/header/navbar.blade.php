@@ -1,5 +1,5 @@
- <!-- Topbar Start -->
- <div class="navbar-custom topnav-navbar">
+<!-- Topbar Start -->
+<div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
 
         <!-- LOGO -->
@@ -15,8 +15,9 @@
         <ul class="list-unstyled topbar-menu float-end mb-0">
 
             <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" id="topbar-userdrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    <span class="account-user-avatar"> 
+                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
+                    id="topbar-userdrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="account-user-avatar">
                         <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
                     </span>
                     <span>
@@ -24,7 +25,8 @@
                         <span class="account-position">user</span>
                     </span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown" aria-labelledby="topbar-userdrop">
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
+                    aria-labelledby="topbar-userdrop">
                     <!-- item-->
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">Selamat datang !</h6>
@@ -32,11 +34,13 @@
 
                     <!-- item-->
 
-                <a class="dropdown-item notify-item" href="{{ route('register.akun') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"> <i class="mdi mdi-login me-1"></i>Register</a>
-                <a href="{{ route('login.peserta') }}" class="dropdown-item notify-item">
-                    <i class="mdi mdi-login me-1"></i>
-                    <span>Login</span>
-                </a>
+                    <a class="dropdown-item notify-item" href="{{ route('register') }}"
+                        class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline"> <i
+                            class="mdi mdi-login me-1"></i>Register</a>
+                    <a href="{{ route('login') }}" class="dropdown-item notify-item">
+                        <i class="mdi mdi-login me-1"></i>
+                        <span>Login</span>
+                    </a>
                 </div>
             </li>
 
@@ -59,7 +63,8 @@
             <div class="collapse navbar-collapse" id="topnav-menu-content">
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" id="topnav-dashboards" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="topnav-dashboards" role="button" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
                             <i class="uil-dashboard me-1"></i>Dashboards
                         </a>
                     </li>
