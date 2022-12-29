@@ -11,15 +11,15 @@ use Carbon\Carbon;
 class DaftarController extends Controller
 {
     //
-    function __construct()
-    {
+    // function __construct()
+    // {
 
-        $this->middleware('permission:daftar-list|daftar-create|daftar-edit|daftar-delete', ['only' => ['index','show']]);
-        $this->middleware('permission:daftar-create', ['only' => ['create','store']]);
-        $this->middleware('permission:daftar-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:daftar-delete', ['only' => ['destroy']]);
-        $this->middleware('permission:daftar-publish', ['only' => ['publish']]);
-    }
+    //     $this->middleware('permission:daftar-list|daftar-create|daftar-edit|daftar-delete', ['only' => ['index','show']]);
+    //     $this->middleware('permission:daftar-create', ['only' => ['create','store']]);
+    //     $this->middleware('permission:daftar-edit', ['only' => ['edit','update']]);
+    //     $this->middleware('permission:daftar-delete', ['only' => ['destroy']]);
+    //     $this->middleware('permission:daftar-publish', ['only' => ['publish']]);
+    // }
 
     public function index()
     {
