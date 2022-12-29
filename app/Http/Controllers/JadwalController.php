@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
+use Carbon\Carbon;
 
 class JadwalController extends Controller
 {
@@ -15,6 +16,7 @@ class JadwalController extends Controller
         $this->middleware('permission:jadwal-create', ['only' => ['create','store']]);
         $this->middleware('permission:jadwal-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:jadwal-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:jadwal-publish', ['only' => ['publish']]);
     }
 
     /**
@@ -26,7 +28,22 @@ class JadwalController extends Controller
     public function index()
     {
         $jadwals = Jadwal::all();
-        return view('jadwals.index',compact('jadwals'));
+        $jadwals[0]['daftar_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_mulai'])
+                            ->format('d-m-Y');
+        $jadwals[0]['daftar_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_selesai'])
+                            ->format('d-m-Y');
+        $jadwals[0]['nilai_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_mulai'])
+                            ->format('d-m-Y');
+        $jadwals[0]['nilai_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_selesai'])
+                            ->format('d-m-Y');
+        $jadwals[0]['sidang_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_mulai'])
+                            ->format('d-m-Y');
+        $jadwals[0]['sidang_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_selesai'])
+                            ->format('d-m-Y');
+        $i = 0;
+        // dd($daftar_mulai);
+        // dd($jadwals);
+        return view('jadwals.index',compact('jadwals','i'));
     }
 
 
@@ -51,11 +68,31 @@ class JadwalController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'tahun' => 'required',
+            'tahap' => 'required',
+            'daftar_mulai' => 'required',
+            'daftar_selesai' => 'required',
+            'nilai_mulai' => 'required',
+            'nilai_selesai' => 'required',
+            'sidang_mulai' => 'required',
+            'sidang_selesai' => 'required',
         ]);
 
-        Jadwal::create($request->all());
+        $input = $request->all();
+        $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
+                            ->format('Y-m-d');
+        $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
+                            ->format('Y-m-d');
+        $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
+                            ->format('Y-m-d');
+        $input['nilai_selesai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_selesai)
+                            ->format('Y-m-d');
+        $input['sidang_mulai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_mulai)
+                            ->format('Y-m-d');
+        $input['sidang_selesai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_selesai)
+                            ->format('Y-m-d');
+
+        Jadwal::create($input);
         return redirect()->route('jadwals.index')
                         ->with('success','Jadwal berhasil ditambahkan.');
     }
@@ -82,6 +119,19 @@ class JadwalController extends Controller
     
     public function edit(Jadwal $jadwal)
     {
+        $jadwal['daftar_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwal->daftar_mulai)
+                            ->format('d-m-Y');
+        $jadwal['daftar_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->daftar_selesai)
+                            ->format('d-m-Y');
+        $jadwal['nilai_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwal->nilai_mulai)
+                            ->format('d-m-Y');
+        $jadwal['nilai_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->nilai_selesai)
+                            ->format('d-m-Y');
+        $jadwal['sidang_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwal->sidang_mulai)
+                            ->format('d-m-Y');
+        $jadwal['sidang_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->sidang_selesai)
+                            ->format('d-m-Y');
+        // dd($jadwal->daftar_mulai);
         return view('jadwals.edit',compact('jadwal'));
     }
 
@@ -96,11 +146,31 @@ class JadwalController extends Controller
     public function update(Request $request, Jadwal $jadwal)
     {
         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
+            'tahun' => 'required',
+            'tahap' => 'required',
+            'daftar_mulai' => 'required',
+            'daftar_selesai' => 'required',
+            'nilai_mulai' => 'required',
+            'nilai_selesai' => 'required',
+            'sidang_mulai' => 'required',
+            'sidang_selesai' => 'required',
         ]);
 
-        $jadwal->update($request->all());
+        $input = $request->all();
+        $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
+                            ->format('Y-m-d');
+        $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
+                            ->format('Y-m-d');
+        $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
+                            ->format('Y-m-d');
+        $input['nilai_selesai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_selesai)
+                            ->format('Y-m-d');
+        $input['sidang_mulai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_mulai)
+                            ->format('Y-m-d');
+        $input['sidang_selesai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_selesai)
+                            ->format('Y-m-d');
+
+        $jadwal->update($input);
         return redirect()->route('jadwals.index')
                         ->with('success','Jadwal berhasil dirubah');
     }
@@ -116,11 +186,15 @@ class JadwalController extends Controller
     {
         $jadwal->delete();
 
-    
-
         return redirect()->route('jadwals.index')
-
                         ->with('success','Jadwal berhasil dihapus');
+    }
 
+    public function publishJadwal($id)
+    {
+        Jadwal::where('id', $id)->update(['publish' => 1]);
+    
+        return redirect()->route('jadwals.index')
+                        ->with('success','Jadwal berhasil dipublish');
     }
 }

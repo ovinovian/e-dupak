@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PermController;
+use App\Http\Controllers\DaftarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +38,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('jadwals', JadwalController::class);
+    Route::get('/publishJadwal/{id}', [JadwalController::class, 'publishJadwal'])->name('publishJadwal');
     Route::resource('perms', PermController::class);
+    Route::resource('daftars', DaftarController::class);
+    Route::get('/daftar/{id}', [DaftarController::class, 'daftar'])->name('daftar');
 });

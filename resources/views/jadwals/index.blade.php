@@ -64,44 +64,49 @@
                                         <th>Nilai Selesai</th>
                                         <th>Sidang Mulai</th>
                                         <th>Sidang Selesai</th>
-                                        <th>Aksi</th>
+                                        <th colspan="2">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jadwal as $key => $jdwl)
+                                    @foreach ($jadwals as $key => $jadwal)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $jdwl->tahun }}</td>
-                                        <td>{{ $jdwl->tahap }}</td>
-                                        <td>{{ $jdwl->daftar_mulai }}</td>
-                                        <td>{{ $jdwl->daftar_selesai }}</td>
-                                        <td>{{ $jdwl->nilai_mulai }}</td>
-                                        <td>{{ $jdwl->nilai_selesai}}</td>
-                                        <td>{{ $jdwl->sidang_mulai }}</td>
-                                        <td>{{ $jdwl->sidang_selesai }}</td>
+                                        <td>{{ $jadwal->tahun }}</td>
+                                        <td>{{ $jadwal->tahap }}</td>
+                                        <td>{{ $jadwal->daftar_mulai }}</td>
+                                        <td>{{ $jadwal->daftar_selesai }}</td>
+                                        <td>{{ $jadwal->nilai_mulai }}</td>
+                                        <td>{{ $jadwal->nilai_selesai}}</td>
+                                        <td>{{ $jadwal->sidang_mulai }}</td>
+                                        <td>{{ $jadwal->sidang_selesai }}</td>
                                         <td>
-                                            @if(!empty($user->getRoleNames()))
+                                            <div>
+                                                <form action="{{ route('jadwals.destroy',$jadwal->id) }}" method="POST">
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('jadwals.edit',$jadwal->id) }}">Rubah</a>
 
-                                            @foreach($user->getRoleNames() as $v)
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    @if($jadwal->publish == 0)
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah yakin ingin menghapus jadwal?');">Hapus</button>
+                                                    @else
+                                                    <button class="btn btn-danger" disabled>Hapus</button>
+                                                    @endif
+                                                </form>
 
-                                            <label class="badge badge-success-lighten">{{ $v }}</label>
-
-                                            @endforeach
-
-                                            @endif
+                                            </div>
                                         </td>
                                         <td>
-                                            <form action="{{ route('users.destroy',$user->id) }}" method="POST"> <a
-                                                    class="btn btn-info"
-                                                    href="{{ route('users.show',$user->id) }}">Lihat</a>
-
-                                                <a class="btn btn-primary"
-                                                    href="{{ route('users.edit',$user->id) }}">Rubah</a>
-
+                                            <form action="{{ route('publishJadwal',$jadwal->id) }}" method="GET">
                                                 @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Apakah yakin ingin menghapus user?');">Hapus</button>
+                                                @method('GET')
+                                                @if($jadwal->publish == 0)
+                                                <button type="submit" class="btn btn-success"
+                                                    onclick="return confirm('Apakah yakin ingin publish jadwal?');">Publish</button>
+                                                @else
+                                                <button class="btn btn-success" disabled>Published</button>
+                                                @endif
                                             </form>
                                         </td>
                                     </tr>
