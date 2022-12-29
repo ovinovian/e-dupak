@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-
+                    <button type="button" class="btn btn-danger"><i class="mdi mdi-minus"></i> Kirim</button>
             </div> <!-- end card-body-->
         </div> <!-- end card-->
     </div><!-- end col -->
