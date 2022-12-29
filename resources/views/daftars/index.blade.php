@@ -44,7 +44,7 @@
     @endif
 
     <div class="row">
-        <div class="col-xxl-8 col-xl-7">
+        <div class="col-xxl-12 col-xl-12">
             <!-- project card -->
             <div class="card d-block">
                 <div class="card-body">

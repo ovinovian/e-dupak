@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('id_jadwal');
             $table->string('klasifikasi',8);
+            $table->string('pelaksana',20);
             $table->tinyText('no_unsur',3);
             $table->string('unsur',60);
             $table->tinyText('no_sub_unsur',1);

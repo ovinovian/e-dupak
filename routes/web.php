@@ -7,12 +7,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PermController;
-<<<<<<< HEAD
 use App\Http\Controllers\Peserta\ProfilController;
-=======
 use App\Http\Controllers\DaftarController;
->>>>>>> d4781fcc2f28daa5a54daa1b564f6e89a5056ff5
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes

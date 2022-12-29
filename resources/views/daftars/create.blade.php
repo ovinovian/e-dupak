@@ -4,118 +4,93 @@
 
 <div class="container-fluid">
 
-    <!-- start page title -->
-    <div class="row">
-        <div class="col-12">
-            <div class="page-title-box">
-                <div class="page-title-right">
-                    <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                        <li class="breadcrumb-item active">Form Elements</li>
-                    </ol>
+   <div class="row mt-3">
+    <div class="col-xxl-12 col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Daftar</h5>
+
+                <div class="row after-add-more">
+                    <div class="col-md-4">
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>--- Pilih Unsur ---</option>
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">1. Unsur 1</option>
+                                <option value="HI">2. Unsur 2</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control select2" data-toggle="select2">
+                            <option>--- Pilih Sub Unsur ---</option>
+                            <optgroup label="Alaskan/Hawaiian Time Zone">
+                                <option value="AK">1. Sub unsur 1</option>
+                                <option value="HI">2. Sub unsur 2</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control numeric" maxlength="7" placeholder="Masukan angka kredit">
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" id="tambahDaftar" class="btn btn-danger add-more"><i class="mdi mdi-plus"></i> </button>
+                    </div>
                 </div>
-                <h4 class="page-title"><a class="btn btn-primary" href="{{ route('jadwals.index') }}">Kembali</a></h4>
-            </div>
-        </div>
-    </div>
-    <!-- end page title -->
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    @if (count($errors) > 0)
-
-                    <div class="alert alert-danger">
-                        <strong>Uppss!</strong> Ada yang salah dengan isian Anda.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                <div class="copy" id="tampung" style="display: none;">
+                        <div class="row mt-2 control-group">
+                       
+                        <div class="col-md-4">
+                            <select class="form-control select2" data-toggle="select2">
+                                <option>--- Pilih Unsur ---</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">1. Unsur 1</option>
+                                    <option value="HI">2. Unsur 2</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="form-control select2" data-toggle="select2">
+                                <option>--- Pilih Sub Unsur ---</option>
+                                <optgroup label="Alaskan/Hawaiian Time Zone">
+                                    <option value="AK">1. Sub unsur 1</option>
+                                    <option value="HI">2. Sub unsur 2</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text" class="form-control numeric" maxlength="7" placeholder="Masukan angka kredit">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-danger remove"><i class="mdi mdi-minus"></i> </button>
+                        </div>
+                             
+                        </div>
                     </div>
 
-                    @endif
-                    <h4 class="header-title">Form Tambah Jadwal
-                    </h4>
-                    <div class="tab-content">
-                        <div class="tab-pane show active" id="floating-preview">
-                            <form action="{{ route('jadwals.store') }}" method="POST">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="mb-3">
-                                            <label for="exampleInputName" class="form-label">Tahun</label>
-                                            <select name="tahun" class="form-control select2" data-toggle="select2">
-                                                <option value="">Pilih</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2022">2022</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputName" class="form-label">Tahap</label>
-                                            <select name="tahap" class="form-control select2" data-toggle="select2">
-                                                <option value="">Pilih</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3 position-relative" id="daftar_mulai">
-                                            <label for="daftar_mulai" class="form-label">Daftar Mulai</label>
-                                            <input type="text" name="daftar_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#daftar_mulai">
-                                        </div>
-                                        <div class="mb-3 position-relative" id="daftar_selesai">
-                                            <label for="daftar_selesai" class="form-label">Daftar
-                                                Selesai</label>
-                                            <input type="text" name="daftar_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#daftar_selesai">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="mb-3 position-relative" id="nilai_mulai">
-                                            <label for="nilai_mulai" class="form-label">Nilai Mulai</label>
-                                            <input type="text" name="nilai_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#nilai_mulai">
-                                        </div>
-                                        <div class="mb-3 position-relative" id="nilai_selesai">
-                                            <label for="nilai_selesai" class="form-label">Nilai
-                                                Selesai</label>
-                                            <input type="text" name="nilai_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#nilai_selesai">
-                                        </div>
-                                        <div class="mb-3 position-relative" id="sidang_mulai">
-                                            <label for="sidang_mulai" class="form-label">Sidang Mulai</label>
-                                            <input type="text" name="sidang_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#sidang_mulai">
-                                        </div>
-                                        <div class="mb-3 position-relative" id="sidang_selesai">
-                                            <label for="sidang_selesai" class="form-label">Sidang
-                                                Selesai</label>
-                                            <input type="text" name="sidang_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
-                                                data-date-autoclose="true" data-date-container="#sidang_selesai">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"
-                                            onclick="return confirm('Apakah yakin ingin menambah jadwal?');">Simpan</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div> <!-- end tab-content-->
-                </div> <!-- end card-body -->
-            </div> <!-- end card -->
-        </div><!-- end col -->
-    </div><!-- end row -->
+
+            </div> <!-- end card-body-->
+        </div> <!-- end card-->
+    </div><!-- end col -->
+   </div>
 
 </div> <!-- container -->
 
+@endsection
+
+@section('script')
+<script src="{{ asset('assets/js/numeric_format.js')}}"></script>
+<script>
+$(document).ready(function() {
+
+    $(".add-more").click(function(){ 
+        var html = $(".copy").html();
+        $(".after-add-more").after(html);
+    });
+
+    $("body").on("click",".remove",function(){ 
+        $(this).parents(".control-group").remove();
+    });
+
+});
+</script>
 @endsection
