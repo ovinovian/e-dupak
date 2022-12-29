@@ -72,6 +72,8 @@ class JadwalController extends Controller
             'tahap' => 'required',
             'daftar_mulai' => 'required',
             'daftar_selesai' => 'required',
+            'siap_mulai' => 'required',
+            'siap_selesai' => 'required',
             'nilai_mulai' => 'required',
             'nilai_selesai' => 'required',
             'sidang_mulai' => 'required',
@@ -82,6 +84,10 @@ class JadwalController extends Controller
         $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
                             ->format('Y-m-d');
         $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
+                            ->format('Y-m-d');
+        $input['siap_mulai'] =Carbon::createFromFormat('d-m-Y', $request->siap_mulai)
+                            ->format('Y-m-d');
+        $input['siap_selesai'] =Carbon::createFromFormat('d-m-Y', $request->siap_selesai)
                             ->format('Y-m-d');
         $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
                             ->format('Y-m-d');
@@ -123,6 +129,10 @@ class JadwalController extends Controller
                             ->format('d-m-Y');
         $jadwal['daftar_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->daftar_selesai)
                             ->format('d-m-Y');
+        $jadwal['siap_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwal->siap_mulai)
+                            ->format('d-m-Y');
+        $jadwal['siap_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->siap_selesai)
+                            ->format('d-m-Y');
         $jadwal['nilai_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwal->nilai_mulai)
                             ->format('d-m-Y');
         $jadwal['nilai_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwal->nilai_selesai)
@@ -149,8 +159,10 @@ class JadwalController extends Controller
             'tahun' => 'required',
             'tahap' => 'required',
             'daftar_mulai' => 'required',
-            'daftar_selesai' => 'required',
             'nilai_mulai' => 'required',
+            'siap_selesai' => 'required',
+            'siap_mulai' => 'required',
+            'daftar_selesai' => 'required',
             'nilai_selesai' => 'required',
             'sidang_mulai' => 'required',
             'sidang_selesai' => 'required',
@@ -160,6 +172,10 @@ class JadwalController extends Controller
         $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
                             ->format('Y-m-d');
         $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
+                            ->format('Y-m-d');
+        $input['siap_mulai'] =Carbon::createFromFormat('d-m-Y', $request->siap_mulai)
+                            ->format('Y-m-d');
+        $input['siap_selesai'] =Carbon::createFromFormat('d-m-Y', $request->siap_selesai)
                             ->format('Y-m-d');
         $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
                             ->format('Y-m-d');

@@ -27,7 +27,7 @@
                         <li class="breadcrumb-item active">Data Tables</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Jadwal</h4>
+                <h4 class="page-title">Tim Penilai</h4>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title"><a class="btn btn-success" href="{{ route('jadwals.create') }}"> Tambah</a>
+                    <h4 class="header-title"><a class="btn btn-success" href="{{ route('tims.create') }}"> Tambah</a>
                     </h4>
 
                     <div class="tab-content">
@@ -56,39 +56,29 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Tahun</th>
-                                        <th>Tahap</th>
-                                        <th>Daftar Mulai</th>
-                                        <th>Daftar Selesai</th>
-                                        <th>Persiapan Mulai</th>
-                                        <th>Persiapan Selesai</th>
-                                        <th>Nilai Mulai</th>
-                                        <th>Nilai Selesai</th>
-                                        <th>Sidang Mulai</th>
-                                        <th>Sidang Selesai</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Hak Akses</th>
                                         <th>Aksi</th>
-                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($jadwals as $key => $jadwal)
+                                    @foreach ($tims as $key => $jadwal)
                                     <tr>
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $jadwal->tahun }}</td>
                                         <td>{{ $jadwal->tahap }}</td>
                                         <td>{{ $jadwal->daftar_mulai }}</td>
                                         <td>{{ $jadwal->daftar_selesai }}</td>
-                                        <td>{{ $jadwal->siap_mulai }}</td>
-                                        <td>{{ $jadwal->siap_selesai }}</td>
                                         <td>{{ $jadwal->nilai_mulai }}</td>
                                         <td>{{ $jadwal->nilai_selesai}}</td>
                                         <td>{{ $jadwal->sidang_mulai }}</td>
                                         <td>{{ $jadwal->sidang_selesai }}</td>
                                         <td>
                                             <div>
-                                                <form action="{{ route('jadwals.destroy',$jadwal->id) }}" method="POST">
+                                                <form action="{{ route('tims.destroy',$jadwal->id) }}" method="POST">
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('jadwals.edit',$jadwal->id) }}">Rubah</a>
+                                                        href="{{ route('tims.edit',$jadwal->id) }}">Rubah</a>
 
                                                     @csrf
                                                     @method('DELETE')

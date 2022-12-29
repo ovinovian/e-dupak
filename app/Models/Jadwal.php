@@ -14,6 +14,8 @@ class Jadwal extends Model
         'tahap',
         'daftar_mulai',
         'daftar_selesai',
+        'siap_mulai',
+        'siap_selesai',
         'nilai_mulai',
         'nilai_selesai',
         'sidang_mulai',

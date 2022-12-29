@@ -110,6 +110,21 @@
                                                 data-provide="datepicker" data-date-format="d-m-yyyy"
                                                 data-date-autoclose="true" data-date-container="#daftar_selesai">
                                         </div>
+                                        <div class="mb-3 position-relative" id="siap_mulai">
+                                            <label for="siap_mulai" class="form-label">Persiapan Mulai</label>
+                                            <input type="text" name="siap_mulai" value="{{ $jadwal->siap_mulai }}"
+                                                class="form-control" data-provide="datepicker"
+                                                data-date-format="d-m-yyyy" data-date-autoclose="true"
+                                                data-date-container="#siap_mulai">
+                                        </div>
+                                        <div class="mb-3 position-relative" id="siap_selesai">
+                                            <label for="siap_selesai" class="form-label">Persiapan
+                                                Selesai</label>
+                                            <input type="text" name="siap_selesai" value="{{ $jadwal->siap_selesai }}"
+                                                class="form-control" data-provide="datepicker"
+                                                data-date-format="d-m-yyyy" data-date-autoclose="true"
+                                                data-date-container="#siap_selesai">
+                                        </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="mb-3 position-relative" id="nilai_mulai">

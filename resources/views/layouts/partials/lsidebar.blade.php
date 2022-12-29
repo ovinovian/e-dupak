@@ -79,53 +79,13 @@
                     <i class="uil-store"></i>
                     <span> Daftar </span>
                 </a>
-                <div class="collapse" id="sidebarEcommerce">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-ecommerce-products.html">Products</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-products-details.html">Products Details</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-orders.html">Orders</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-orders-details.html">Order Details</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-customers.html">Customers</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-shopping-cart.html">Shopping Cart</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-checkout.html">Checkout</a>
-                        </li>
-                        <li>
-                            <a href="apps-ecommerce-sellers.html">Sellers</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
 
             <li class="side-nav-item">
-                <a data-bs-toggle="collapse" href="#sidebarEmail" aria-expanded="false" aria-controls="sidebarEmail"
-                    class="side-nav-link">
+                <a href="{{ route('tims.index') }}" class="side-nav-link">
                     <i class="uil-envelope"></i>
-                    <span> Email </span>
-                    <span class="menu-arrow"></span>
+                    <span> Tim Penilai </span>
                 </a>
-                <div class="collapse" id="sidebarEmail">
-                    <ul class="side-nav-second-level">
-                        <li>
-                            <a href="apps-email-inbox.html">Inbox</a>
-                        </li>
-                        <li>
-                            <a href="apps-email-read.html">Read Email</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
 
             <li class="side-nav-item">

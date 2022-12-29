@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('tahap',1);
             $table->date('daftar_mulai');
             $table->date('daftar_selesai');
+            $table->date('siap_mulai');
+            $table->date('siap_selesai');
             $table->date('nilai_mulai');
             $table->date('nilai_selesai');
             $table->date('sidang_mulai');

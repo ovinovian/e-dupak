@@ -44,14 +44,14 @@
     @endif
 
     <div class="row">
-        <div class="col-xxl-8 col-xl-7">
+        <div class="col-xxl-12 col-xl-12">
             <!-- project card -->
             <div class="card d-block">
                 <div class="card-body">
                     <h3 class="mt-3">Jadwal Penilaian Dupak</h3>
 
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-12">
                             <!-- assignee -->
                             <p class="mt-2 mb-1 text-muted fw-bold font-12 text-uppercase">Pelaksanaan oleh</p>
                             <div class="d-flex">
