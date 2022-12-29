@@ -163,6 +163,12 @@
                     <span> File Manager </span>
                 </a>
             </li>
+            <li class="side-nav-item">
+                <a href="{{ route('profil.peserta') }}" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> Profil Peserta </span>
+                </a>
+            </li>
             @endif
             @endguest
         </ul>

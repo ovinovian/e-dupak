@@ -23,7 +23,6 @@ return new class extends Migration
             $table->date('tgl_lahir');
             $table->tinyInteger('jk');
             $table->string('alamat');
-            $table->string('gol');
             $table->string('pangkat');
             $table->string('golongan');
             $table->string('tmt_pangkat');

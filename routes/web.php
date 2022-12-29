@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PermController;
+use App\Http\Controllers\Peserta\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    //Peserta
+    Route::get('peserta/profil', [ProfilController::class, 'index'])->name('profil.peserta');
 
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
