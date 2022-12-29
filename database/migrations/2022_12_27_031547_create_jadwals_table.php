@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('nilai_selesai');
             $table->date('sidang_mulai');
             $table->date('sidang_selesai');
+            $table->tinyInteger('publish')->default(0);
             $table->timestamps();
         });
     }

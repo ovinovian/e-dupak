@@ -7,7 +7,11 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PermController;
+<<<<<<< HEAD
 use App\Http\Controllers\Peserta\ProfilController;
+=======
+use App\Http\Controllers\DaftarController;
+>>>>>>> d4781fcc2f28daa5a54daa1b564f6e89a5056ff5
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +45,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('jadwals', JadwalController::class);
+    Route::get('/publishJadwal/{id}', [JadwalController::class, 'publishJadwal'])->name('publishJadwal');
     Route::resource('perms', PermController::class);
+    Route::resource('daftars', DaftarController::class);
+    Route::get('/daftar/{id}', [DaftarController::class, 'daftar'])->name('daftar');
 });

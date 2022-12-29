@@ -103,7 +103,6 @@ class PermController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'detail' => 'required',
         ]);
 
         $perm->update($request->all());
