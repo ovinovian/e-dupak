@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\Jadwal;
 use App\Models\VwDaftar;
 use App\Models\VwJadwal;
+use App\Models\VwPrakomDetail;
+use App\Models\VwUnsur;
+use App\Models\VwSubUnsur;
+use App\Models\VwButir;
 use Carbon\Carbon;
 
 class DaftarController extends Controller
@@ -72,14 +78,39 @@ class DaftarController extends Controller
     public function daftar($id)
     {
         $id_jadwal = $id;
-        return view('daftars.create',compact('id_jadwal'));
-        // dd($id);
-    }
+        $data = VwPrakomDetail::where('id_user', Auth::id())->get();
 
+        // dd($data[0]['jenjang_jabatan']);
+        $butir = VwUnsur::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        // dd($data);
+        return view('daftars.create',compact('id_jadwal', 'data', 'butir'));
+    }
+    
     public function create($id)
     {
         $id_jadwal = $id;
         return view('daftars.create',compact('id_jadwal'));
         // dd($id);
+    }
+
+    public function getSubUnsur(Request $request){
+        $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+        $sub_unsur = VwSubUnsur::where('no_unsur', $request->unsur)->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        
+        if(count($sub_unsur) > 0){
+            return response()->json($sub_unsur);
+        }
+    }
+
+    public function getButir(Request $request, $sub_unsur){
+        $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+
+        // dd($request->all());
+
+        $butir = VwButir::where('no_unsur', $request[0]->unsur)->where('no_sub_unsur', $sub_unsur)->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        
+        if(count($butir) > 0){
+            return response()->json($butir);
+        }
     }
 }

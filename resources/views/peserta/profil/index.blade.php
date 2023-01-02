@@ -61,6 +61,7 @@
                                                 <div class="col-md-9">
                                                     <input type="text" id="nama" class="form-control"
                                                         value="{{ $users[0]->name }}" disabled>
+
                                                 </div>
                                             </div>
                                             <div class="row mb-3">

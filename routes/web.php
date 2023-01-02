@@ -50,5 +50,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('perms', PermController::class);
     Route::resource('daftars', DaftarController::class);
     Route::get('/daftar/{id}', [DaftarController::class, 'daftar'])->name('daftar');
+    Route::get('getSubUnsur', [DaftarController::class, 'getSubUnsur'])->name('getSubUnsur');
+    Route::get('getButir', [DaftarController::class, 'getButir'])->name('getButir');
     Route::resource('tims', TimController::class);
 });
