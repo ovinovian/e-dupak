@@ -47,6 +47,12 @@
 
             @if(Auth::user()->id_user == 0)
             <li class="side-nav-item">
+                <a href="{{ route('profil.index') }}" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> Profil Peserta </span>
+                </a>
+            </li>
+            <li class="side-nav-item">
                 <a href="{{ route('users.index') }}" class="side-nav-link">
                     <i class="uil-calender"></i>
                     <span> User </span>
@@ -119,12 +125,6 @@
                 <a href="apps-file-manager.html" class="side-nav-link">
                     <i class="uil-folder-plus"></i>
                     <span> File Manager </span>
-                </a>
-            </li>
-            <li class="side-nav-item">
-                <a href="{{ route('profil.peserta') }}" class="side-nav-link">
-                    <i class="uil-store"></i>
-                    <span> Profil Peserta </span>
                 </a>
             </li>
             @endif

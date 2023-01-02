@@ -38,8 +38,9 @@ Route::group(['middleware' => ['auth']], function() {
     })->name('dashboard');
 
     //Peserta
-    Route::get('peserta/profil', [ProfilController::class, 'index'])->name('profil.peserta');
-
+    // Route::get('peserta/profil', [ProfilController::class, 'index'])->name('profil.peserta');
+    Route::resource('profil', ProfilController::class);
+    Route::get('getTkJab', [ProfilController::class, 'getTkJab'])->name('getTkJab');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('jadwals', JadwalController::class);

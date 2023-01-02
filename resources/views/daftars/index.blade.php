@@ -88,6 +88,24 @@
                             <!-- end due date -->
                             <div class="row">
                                 <!-- start due date -->
+                                <p class="mt-2 mb-1 text-muted fw-bold font-12 text-uppercase">Persiapan</p>
+                                <div class="d-flex">
+                                    <i class='uil uil-schedule font-18 text-success me-1'></i>
+                                    <div>
+                                        <h5 class="mt-1 font-14">
+                                            @if($data == 1)
+                                            Mulai Tanggal {{ $jadwals[0]->siap_mulai }} s.d. {{
+                                            $jadwals[0]->siap_mulai }}
+                                            @else
+                                            Belum Ada Jadwal
+                                            @endif
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end due date -->
+                            <div class="row">
+                                <!-- start due date -->
                                 <p class="mt-2 mb-1 text-muted fw-bold font-12 text-uppercase">Penilaian</p>
                                 <div class="d-flex">
                                     <i class='uil uil-schedule font-18 text-success me-1'></i>
