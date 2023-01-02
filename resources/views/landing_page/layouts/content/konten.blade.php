@@ -6,6 +6,15 @@
     .card-1 {
         background-color: 	rgb(255, 204, 204);
     }
+    .card-2 {
+       background-color:  rgb(179, 179, 255);
+    }
+    .card-3 {
+       background-color:  rgb(204, 255, 221)
+    }
+    .card-4 {
+       background-color:  rgb(255, 255, 153);
+    }
 </style>
 @endsection
 
@@ -37,7 +46,7 @@
 
                 <div class="row">
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-1">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>
@@ -52,7 +61,7 @@
                     </div> <!-- end col -->
                     <div class="col-xl-3 col-lg-4">
                         
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-3">
                             <div class="card-body">
                                 <i class='uil uil-window-restore float-end'></i>
                                 <h6 class="text-uppercase mt-0">Views per minute</h6>
@@ -66,7 +75,7 @@
                         <!--end card-->
                     </div>
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-2">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>
@@ -81,7 +90,7 @@
                     </div> <!-- end col -->
 
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-4">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>
@@ -99,7 +108,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-4">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>
@@ -128,7 +137,7 @@
                         <!--end card-->
                     </div>
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-2">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>
@@ -143,7 +152,7 @@
                     </div> <!-- end col -->
 
                     <div class="col-xl-3 col-lg-4">
-                        <div class="card tilebox-one">
+                        <div class="card tilebox-one card-3">
                             <div class="card-body">
                                 <i class='uil uil-users-alt float-end'></i>
                                 <h6 class="text-uppercase mt-0">Active Users</h6>

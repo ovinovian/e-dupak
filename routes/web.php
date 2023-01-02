@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function() {
     // Route::get('peserta/profil', [ProfilController::class, 'index'])->name('profil.peserta');
     Route::resource('profil', ProfilController::class);
     Route::get('getTkJab', [ProfilController::class, 'getTkJab'])->name('getTkJab');
+    Route::get('peserta/edit_profil/{id}', [ProfilController::class, 'edit_profil'])->name('peserta.edit.profil');
+    Route::post('peserta/ubah_profil/{id}', [ProfilController::class, 'ubah_profil'])->name('peserta.ubah.profil');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('jadwals', JadwalController::class);
