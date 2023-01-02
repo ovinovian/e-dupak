@@ -63,46 +63,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($tims as $key => $jadwal)
+                                    @foreach ($tims as $key => $tim)
                                     <tr>
                                         <td>{{ ++$i }}</td>
-                                        <td>{{ $jadwal->tahun }}</td>
-                                        <td>{{ $jadwal->tahap }}</td>
-                                        <td>{{ $jadwal->daftar_mulai }}</td>
-                                        <td>{{ $jadwal->daftar_selesai }}</td>
-                                        <td>{{ $jadwal->nilai_mulai }}</td>
-                                        <td>{{ $jadwal->nilai_selesai}}</td>
-                                        <td>{{ $jadwal->sidang_mulai }}</td>
-                                        <td>{{ $jadwal->sidang_selesai }}</td>
+                                        <td>{{ $tim->name }}</td>
+                                        <td>{{ $tim->email }}</td>
+                                        <td><label class="badge badge-success-lighten">Tim Penilai</label></td>
                                         <td>
                                             <div>
-                                                <form action="{{ route('tims.destroy',$jadwal->id) }}" method="POST">
+                                                <form action="{{ route('tims.destroy',$tim->id) }}" method="POST">
                                                     <a class="btn btn-primary"
-                                                        href="{{ route('tims.edit',$jadwal->id) }}">Rubah</a>
+                                                        href="{{ route('tims.edit',$tim->id) }}">Rubah</a>
 
                                                     @csrf
                                                     @method('DELETE')
-                                                    @if($jadwal->publish == 0)
+                                                    @if($tim->publish == 0)
                                                     <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah yakin ingin menghapus jadwal?');">Hapus</button>
+                                                        onclick="return confirm('Apakah yakin ingin menghapus tim?');">Hapus</button>
                                                     @else
                                                     <button class="btn btn-danger" disabled>Hapus</button>
                                                     @endif
                                                 </form>
 
                                             </div>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('publishJadwal',$jadwal->id) }}" method="GET">
-                                                @csrf
-                                                @method('GET')
-                                                @if($jadwal->publish == 0)
-                                                <button type="submit" class="btn btn-success"
-                                                    onclick="return confirm('Apakah yakin ingin publish jadwal?');">Publish</button>
-                                                @else
-                                                <button class="btn btn-success" disabled>Published</button>
-                                                @endif
-                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach

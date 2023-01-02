@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('karpeg');
             $table->string('t_lahir');
             $table->date('tgl_lahir');
-            $table->tinyInteger('jk');
+            $table->tinyInteger('jk',1);
             $table->string('alamat');
             $table->string('pangkat');
             $table->string('golongan');

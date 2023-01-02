@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\VwTim;
 use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
@@ -26,11 +27,10 @@ class TimController extends Controller
 
     {
 
-        $data = User::orderBy('id','DESC')->paginate(5);
-
-        return view('users.index',compact('data'))
-
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        $tims = VwTim::all();
+        $i = 0;
+        return view('tims.index',compact('tims','i'));
+        // dd($tims);
 
     }
 

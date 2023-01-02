@@ -66,27 +66,27 @@
                                         <div class="mb-3 position-relative" id="daftar_mulai">
                                             <label for="daftar_mulai" class="form-label">Daftar Mulai</label>
                                             <input type="text" name="daftar_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#daftar_mulai">
                                         </div>
                                         <div class="mb-3 position-relative" id="daftar_selesai">
                                             <label for="daftar_selesai" class="form-label">Daftar
                                                 Selesai</label>
                                             <input type="text" name="daftar_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#daftar_selesai">
                                         </div>
                                         <div class="mb-3 position-relative" id="siap_mulai">
                                             <label for="siap_mulai" class="form-label">Persiapan Mulai</label>
                                             <input type="text" name="siap_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#siap_mulai">
                                         </div>
                                         <div class="mb-3 position-relative" id="siap_selesai">
                                             <label for="siap_selesai" class="form-label">Persiapan
                                                 Selesai</label>
                                             <input type="text" name="siap_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#siap_selesai">
                                         </div>
                                     </div>
@@ -94,27 +94,27 @@
                                         <div class="mb-3 position-relative" id="nilai_mulai">
                                             <label for="nilai_mulai" class="form-label">Nilai Mulai</label>
                                             <input type="text" name="nilai_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#nilai_mulai">
                                         </div>
                                         <div class="mb-3 position-relative" id="nilai_selesai">
                                             <label for="nilai_selesai" class="form-label">Nilai
                                                 Selesai</label>
                                             <input type="text" name="nilai_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#nilai_selesai">
                                         </div>
                                         <div class="mb-3 position-relative" id="sidang_mulai">
                                             <label for="sidang_mulai" class="form-label">Sidang Mulai</label>
                                             <input type="text" name="sidang_mulai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#sidang_mulai">
                                         </div>
                                         <div class="mb-3 position-relative" id="sidang_selesai">
                                             <label for="sidang_selesai" class="form-label">Sidang
                                                 Selesai</label>
                                             <input type="text" name="sidang_selesai" class="form-control"
-                                                data-provide="datepicker" data-date-format="d-m-yyyy"
+                                                data-provide="datepicker" data-date-format="dd-mm-yyyy"
                                                 data-date-autoclose="true" data-date-container="#sidang_selesai">
                                         </div>
                                         <button type="submit" class="btn btn-primary"
