@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Butir extends Model
+class VwButir extends Model
 {
     use HasFactory;
 
-    protected $table = "vw_butir";
+    protected $table = "vw_butir_all";
 }

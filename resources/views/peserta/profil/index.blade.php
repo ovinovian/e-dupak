@@ -68,7 +68,7 @@
                                             <label class="col-md-3 col-form-label">Nama</label>
                                             <div class="col-md-9">
                                                 <input type="text" id="nama" class="form-control" value="{{ $users }}"
-                                                    disabled>
+                                                    readonly>
                                                 <div>
                                                     <small id="error-nik" style="color: red"></small>
                                                 </div>
