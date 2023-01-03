@@ -2,6 +2,7 @@
 
 @section('style')
 <link href="{{ asset('assets/css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css">
+<link href="{{asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
 <style>
     .card-1 {
         background-color: 	rgb(255, 204, 204);
@@ -452,6 +453,48 @@
                 </div>
                 <!-- end row -->
 
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Position</th>
+                                            <th>Office</th>
+                                            <th>Age</th>
+                                            <th>Start date</th>
+                                            <th>Salary</th>
+                                        </tr>
+                                    </thead>
+                                
+                                
+                                    <tbody>
+                                        <tr>
+                                            <td>Tiger Nixon</td>
+                                            <td>System Architect</td>
+                                            <td>Edinburgh</td>
+                                            <td>61</td>
+                                            <td>2011/04/25</td>
+                                            <td>$320,800</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Garrett Winters</td>
+                                            <td>Accountant</td>
+                                            <td>Tokyo</td>
+                                            <td>63</td>
+                                            <td>2011/07/25</td>
+                                            <td>$170,750</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- container -->
 @endsection
@@ -460,6 +503,12 @@
      <script src="{{ asset('assets/js/vendor/apexcharts.min.js') }}"></script>
      <script src="{{ asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
      <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
+
+    <script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
      <!-- third party js ends -->
 
      <!-- demo app -->
