@@ -15,9 +15,8 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                        <li class="breadcrumb-item active">Form Wizard</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dupak</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Profil</a></li>
                     </ol>
                 </div>
                 <h4 class="page-title">Profil</h4>
@@ -269,15 +268,13 @@
                                 </div>
 
                                 <div class="float-end">
-                                    <a href="{{ route('peserta.edit.profil', ['id' => Auth::id()]) }}" role="button" class='btn btn-warning'> Update</a>
-                                </div>
-                                <div class="float-start">
-                                    
                                     <input type='button' class='btn btn-info button-previous' name='previous'
                                     value='Prev'>
                                     <input type='button' id="next-button" class='btn btn-info button-next' name='next'
                                         value='Next'>
-                                    
+                                </div>
+                                <div class="float-start">
+                                    <a href="{{ route('peserta.edit.profil', ['id' => Auth::id()]) }}" role="button" class='btn btn-warning text-white'> Update</a>
                                 </div>
 
                                 <div class="clearfix"></div>

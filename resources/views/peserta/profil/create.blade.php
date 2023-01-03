@@ -15,12 +15,11 @@
             <div class="page-title-box">
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                        <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
-                        <li class="breadcrumb-item active">Form Wizard</li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Dupak</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tambah Data Profil</a></li>
                     </ol>
                 </div>
-                <h4 class="page-title">Form Wizard</h4>
+                <h4 class="page-title">Tambah Data Profil</h4>
             </div>
         </div>
     </div>
@@ -30,7 +29,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="header-title mb-3"> Lengkapi Data Profil</h4>
+                    <h4 class="header-title mb-3"> Tambah Data Profil</h4>
                     <form action="{{ route('profil.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div id="btnwizard">
@@ -317,30 +316,18 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="text-center">
-                                                <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
-                                                <h3 class="mt-0">Thank you !</h3>
+                                                <h2 class="mt-0"><i class="mdi mdi-alert"></i></h2>
+                                                <h3 class="mt-0">Perhatian !</h3>
 
-                                                <p class="w-75 mb-2 mx-auto">Quisque nec turpis at urna dictum
-                                                    luctus.
-                                                    Suspendisse convallis dignissim eros at volutpat. In egestas
-                                                    mattis
-                                                    dui.
-                                                    Aliquam
-                                                    mattis dictum aliquet.</p>
+                                                <p class="w-75 mb-2 mx-auto">Mohon Periksa Kebali data yang anda inputkan sebelum tombol simpan diklik.</p>
 
                                                 <div class="mb-3">
                                                     <div class="form-check d-inline-block">
-                                                        <input type="checkbox" class="form-check-input"
-                                                            id="customCheck2">
-                                                        <label class="form-check-label" for="customCheck2">I agree
-                                                            with
-                                                            the
-                                                            Terms and Conditions</label>
+                                                        <button type="submit" class="btn btn-warning mb-3 text-white" onclick="return confirm('Apakah yakin ingin menyimpan?');">Simpan</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="btn btn-primary mb-3"
-                                                onclick="return confirm('Apakah yakin ingin menyimpan?');">Simpan</button>
+                                           
 
                                         </div> <!-- end col -->
                                     </div> <!-- end row -->
