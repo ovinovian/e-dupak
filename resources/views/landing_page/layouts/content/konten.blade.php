@@ -2,9 +2,22 @@
 
 @section('style')
 <link href="{{ asset('assets/css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css">
+<link href="{{asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
 <style>
     .card-1 {
         background-color: rgb(255, 204, 204);
+    }
+
+    .card-2 {
+        background-color: rgb(179, 179, 255);
+    }
+
+    .card-3 {
+        background-color: rgb(204, 255, 221)
+    }
+
+    .card-4 {
+        background-color: rgb(255, 255, 153);
     }
 </style>
 @endsection
@@ -123,10 +136,16 @@
 <!-- container -->
 @endsection
 @section('script')
-<!-- <script src="assets/js/vendor/Chart.bundle.min.js"></script> -->
 <script src="{{ asset('assets/js/vendor/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- third party js ends -->
+
+<script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/buttons.bootstrap5.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
 <!-- third party js ends -->
 
 <!-- demo app -->
