@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Log In | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>DUPAK DISKOMINFO - BABEL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -36,7 +36,7 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Masuk</h4>
                                 <p class="text-muted mb-4">Masukkan Email dan Password Anda
                                 </p>
                             </div>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
+                                    <label for="password" class="col-md-4 col-form-label">{{ __('Password')
                                         }}</label>
 
                                     <div class="input-group input-group-merge">
@@ -88,8 +88,8 @@
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
-                            <p class="text-muted">Don't have an account? <a href="pages-register.html"
-                                    class="text-muted ms-1"><b>Sign Up</b></a></p>
+                            <p class="text-muted">Tidak punya akun? <a href="{{url('/register')}}"
+                                    class="text-muted ms-1"><b>Daftar</b></a></p>
                         </div> <!-- end col -->
                     </div>
                     <!-- end row -->
@@ -101,10 +101,6 @@
         <!-- end container -->
     </div>
     <!-- end page -->
-
-    <footer class="footer footer-alt">
-        2018 - 2021 © Hyper - Coderthemes.com
-    </footer>
 
     <!-- bundle -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
