@@ -75,13 +75,57 @@ class DaftarController extends Controller
         // return view('daftars.index',compact('data','jadwals','dft'));
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    
+    public function store(Request $request)
+    {
+        request()->validate([
+            'mk_tahun_baru' => 'required',
+            'mk_bulan_baru' => 'required',
+            '' => 'required',
+            'siap_mulai' => 'required',
+            'siap_selesai' => 'required',
+            'nilai_mulai' => 'required',
+            'nilai_selesai' => 'required',
+            'sidang_mulai' => 'required',
+            'sidang_selesai' => 'required',
+        ]);
+
+        $input = $request->all();
+        $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
+                            ->format('Y-m-d');
+        $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
+                            ->format('Y-m-d');
+        $input['siap_mulai'] =Carbon::createFromFormat('d-m-Y', $request->siap_mulai)
+                            ->format('Y-m-d');
+        $input['siap_selesai'] =Carbon::createFromFormat('d-m-Y', $request->siap_selesai)
+                            ->format('Y-m-d');
+        $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
+                            ->format('Y-m-d');
+        $input['nilai_selesai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_selesai)
+                            ->format('Y-m-d');
+        $input['sidang_mulai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_mulai)
+                            ->format('Y-m-d');
+        $input['sidang_selesai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_selesai)
+                            ->format('Y-m-d');
+
+        Jadwal::create($input);
+        return redirect()->route('jadwals.index')
+                        ->with('success','Jadwal berhasil ditambahkan.');
+    }
+
     public function daftar($id)
     {
         $id_jadwal = $id;
         $data = VwPrakomDetail::where('id_user', Auth::id())->get();
 
         // dd($data[0]['jenjang_jabatan']);
-        $butir = VwUnsur::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        $butir = VwButir::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
         // dd($data);
         return view('daftars.create',compact('id_jadwal', 'data', 'butir'));
     }
@@ -93,6 +137,15 @@ class DaftarController extends Controller
         // dd($id);
     }
 
+    public function getUnsur(Request $request){
+        $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+        $unsur = VwUnsur::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        
+        if(count($unsur) > 0){
+            return response()->json($unsur);
+        }
+    }
+
     public function getSubUnsur(Request $request){
         $data = VwPrakomDetail::where('id_user', Auth::id())->get();
         $sub_unsur = VwSubUnsur::where('no_unsur', $request->unsur)->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
@@ -102,12 +155,13 @@ class DaftarController extends Controller
         }
     }
 
-    public function getButir(Request $request, $sub_unsur){
+    public function getButir(Request $request){
         $data = VwPrakomDetail::where('id_user', Auth::id())->get();
 
         // dd($request->all());
+        $pisah = explode(',', $request['sub_unsur']);
 
-        $butir = VwButir::where('no_unsur', $request[0]->unsur)->where('no_sub_unsur', $sub_unsur)->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        $butir = VwButir::where('no_unsur', $pisah[0])->where('no_sub_unsur', $pisah[1])->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
         
         if(count($butir) > 0){
             return response()->json($butir);

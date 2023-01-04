@@ -26,7 +26,10 @@ use App\Http\Controllers\TimController;
 //     return view('welcome');
 // });
 
-Route::get('/', [App\Http\Controllers\Halaman_landing_page\LandingPageController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Halaman_landing_page\LandingPageController::class, 'index']);
+// Route::get('/finish', [App\Http\Controllers\Halaman_landing_page\LandingPageController::class, 'index']);
+Route::get('/finish', [App\Http\Controllers\Halaman_landing_page\LandingPageController::class, 'index'])->name('finish');
+
 
 Auth::routes();
 
@@ -48,6 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('perms', PermController::class);
     Route::resource('daftars', DaftarController::class);
     Route::get('/daftar/{id}', [DaftarController::class, 'daftar'])->name('daftar');
+    Route::get('getUnsur', [DaftarController::class, 'getUnsur'])->name('getUnsur');
     Route::get('getSubUnsur', [DaftarController::class, 'getSubUnsur'])->name('getSubUnsur');
     Route::get('getButir', [DaftarController::class, 'getButir'])->name('getButir');
     Route::resource('tims', TimController::class);

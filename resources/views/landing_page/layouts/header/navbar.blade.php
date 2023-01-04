@@ -18,11 +18,11 @@
                 <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown"
                     id="topbar-userdrop" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <span class="account-user-avatar">
-                        <img src="assets/images/users/avatar-1.jpg" alt="user-image" class="rounded-circle">
+                        <img src="assets/images/users/logo_prov.png" alt="user-image" class="rounded-circle">
                     </span>
                     <span>
-                        <span class="account-user-name">Username</span>
-                        <span class="account-position">user</span>
+                        <span class="account-user-name">Menu</span>
+                        <span class="account-position">Akses</span>
                     </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown"
@@ -65,7 +65,7 @@
                     <li class="nav-item ">
                         <a class="nav-link" href="#" id="topnav-dashboards" role="button" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
-                            <i class="uil-dashboard me-1"></i>Dashboards
+                            <i class="uil-dashboard me-1"></i>e-DUPAK PROVINSI KEPULAUAN BANGKA BELITUNG
                         </a>
                     </li>
                 </ul>
