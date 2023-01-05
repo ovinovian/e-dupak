@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Log In | Hyper - Responsive Bootstrap 5 Admin Dashboard</title>
+    <title>DUPAK DISKOMINFO - BABEL</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
@@ -36,9 +36,12 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
-                                <p class="text-muted mb-4">Masukkan Email dan Password Anda
-                                </p>
+                                <<<<<<< HEAD <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
+                                    =======
+                                    <h4 class="text-dark-50 text-center pb-0 fw-bold">Masuk</h4>
+                                    >>>>>>> efe771cca91e785250e296605df9789e0a7843a2
+                                    <p class="text-muted mb-4">Masukkan Email dan Password Anda
+                                    </p>
                             </div>
 
                             <form method="POST" action="{{ route('login') }}">
@@ -58,23 +61,27 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md">{{ __('Password')
-                                        }}</label>
+                                    <<<<<<< HEAD <label for="password" class="col-md-4 col-form-label text-md">{{
+                                        __('Password')
+                                        =======
+                                        <label for="password" class="col-md-4 col-form-label">{{ __('Password')
+                                            >>>>>>> efe771cca91e785250e296605df9789e0a7843a2
+                                            }}</label>
 
-                                    <div class="input-group input-group-merge">
-                                        <input id="password" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="current-password">
-                                        <div class="input-group-text" data-password="false">
-                                            <span class="password-eye"></span>
+                                        <div class="input-group input-group-merge">
+                                            <input id="password" type="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                name="password" required autocomplete="current-password">
+                                            <div class="input-group-text" data-password="false">
+                                                <span class="password-eye"></span>
+                                            </div>
+
+                                            @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
                                         </div>
-
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                        @enderror
-                                    </div>
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
@@ -104,10 +111,6 @@
         <!-- end container -->
     </div>
     <!-- end page -->
-
-    <footer class="footer footer-alt">
-        2018 - 2021 © Hyper - Coderthemes.com
-    </footer>
 
     <!-- bundle -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
