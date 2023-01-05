@@ -36,12 +36,10 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <<<<<<< HEAD <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
-                                    =======
-                                    <h4 class="text-dark-50 text-center pb-0 fw-bold">Masuk</h4>
-                                    >>>>>>> efe771cca91e785250e296605df9789e0a7843a2
-                                    <p class="text-muted mb-4">Masukkan Email dan Password Anda
-                                    </p>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Masuk</h4>
+                                <p class="text-muted mb-4">Masukkan Email dan Password Anda
+                                </p>
                             </div>
 
                             <form method="POST" action="{{ route('login') }}">
@@ -61,13 +59,8 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <<<<<<< HEAD <label for="password" class="col-md-4 col-form-label text-md">{{
-                                        __('Password')
-                                        =======
-                                        <label for="password" class="col-md-4 col-form-label">{{ __('Password')
-                                            >>>>>>> efe771cca91e785250e296605df9789e0a7843a2
-                                            }}</label>
-
+                                    <label for="password" class="form-label text-md">{{
+                                        __('Password') }}
                                         <div class="input-group input-group-merge">
                                             <input id="password" type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
