@@ -18,6 +18,8 @@ class Daftar extends Model
         'mk_bulan_lama',
         'mk_tahun_baru',
         'mk_bulan_baru',
+        'pengembangan_profesi',
+        'unsur_penunjang',
         'status_daftar',
     ];
 }

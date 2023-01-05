@@ -36,6 +36,8 @@ class DaftarController extends Controller
     {
         $jadwals = VwJadwal::all();
         $daftars = VwDaftar::all();
+        $user = VwPrakomDetail::where('id_user', Auth::user()->id)->get();
+        $butir = VwButir::where('klasifikasi', $user[0]['jenjang_jabatan'])->where('pelaksana', $user[0]['jenjang_tingkat_jabatan'])->get();
         
         if(!$daftars->isEmpty()){
             $dft = 1;
@@ -71,7 +73,7 @@ class DaftarController extends Controller
             
             if(!$daftarAju->isEmpty()){
                 $aju = 1;
-                return view('daftars.index',compact('data','jadwals','dft', 'daftarAju', 'aju'));
+                return view('daftars.index',compact('data','jadwals','dft', 'daftarAju', 'aju', 'butir'));
             }
             else{
                 $aju = 0;
@@ -90,6 +92,24 @@ class DaftarController extends Controller
         // return view('daftars.index',compact('data','jadwals','dft'));
     }
 
+    public function create($id)
+    {
+        $id_jadwal = $id;
+        return view('daftars.create',compact('id_jadwal'));
+        // dd($id);
+    }
+
+    public function daftar($id)
+    {
+        $id_jadwal = $id;
+        $data = VwPrakomDetail::where('id_user', Auth::user()->id)->get();
+
+        // dd($data[0]['jenjang_jabatan']);
+        $butir = VwButir::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        // dd($data);
+        return view('daftars.create',compact('id_jadwal', 'data', 'butir'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -105,6 +125,8 @@ class DaftarController extends Controller
             'mk_bulan_baru' => 'required',
             'surat_pengantar' => 'required|mimes:pdf',
             'laporan_kegiatan' => 'required|mimes:pdf',
+            'pengembangan_profesi' => 'required',
+            'unsur_penunjang' => 'required',
             'id_butir' => 'required',
             'nilai' => 'required',
             'id_jadwal' => 'required',
@@ -117,24 +139,8 @@ class DaftarController extends Controller
         $tgl = Carbon::now()->toDateTimeString();
         // dd($butir);
         $input[] = $request->all();
-        $Data = [];
-        foreach($request->get('id_butir') as $d=>$item)
-        {
-            // dd($d['id_butir']);
-            $Data[] = [
-                'id_butir'=>$butir[$d],
-                'nilai'=>$nilai[$d],
-                'nip'=>$nip[$d],
-                'id_jadwal'=>$id_jadwal[$d],
-                'created_at'=>$tgl,
-                'updated_at'=>$tgl,
-            ];
-        }
-        // dd($Data);
-        // DB::table('detail_daftars')->insert($Data);
-        DaftarDetail::insert($Data);
-        
-        // dd($Data);
+                
+        // dd($input);
         
         if ($request->hasfile('surat_pengantar') && $request->hasfile('laporan_kegiatan')) {
             $upload_path = 'public/documents/';
@@ -151,6 +157,13 @@ class DaftarController extends Controller
             //
             $message = "Gagal";
         }
+
+        // dd($input['unsur_penunjang']);
+
+        $data2 = ['nip'=>$nip[0],'id_jadwal'=>$id_jadwal[0],'surat_pengantar'=>$file_name, 'laporan_kegiatan'=>$file_name2,'mk_tahun_baru'=>$input[0]['mk_tahun_baru'], 'mk_bulan_baru'=>$input[0]['mk_bulan_baru'],'pengembangan_profesi'=>$input[0]['pengembangan_profesi'], 'unsur_penunjang'=>$input[0]['unsur_penunjang'], 'status_daftar'=>'1'];
+        // dd($data2);
+
+        Daftar::create($data2);
         
         // $daftar['nip'] = $input['nip'];
         
@@ -159,10 +172,24 @@ class DaftarController extends Controller
         // // dd($input);
         // dd($detail['id_butir']);
 
-        $data2 = ['nip'=>$nip[0],'id_jadwal'=>$id_jadwal[0],'surat_pengantar'=>$file_name, 'laporan_kegiatan'=>$file_name2,'mk_tahun_baru'=>$input[0]['mk_tahun_baru'], 'mk_bulan_baru'=>$input[0]['mk_bulan_baru'],'status_daftar'=>'1'];
-        // dd($data2);
+        // $input[] = $request->all();
 
-        Daftar::create($data2);
+        $Data = [];
+        foreach($request->get('id_butir') as $d=>$item)
+        {
+            // dd($d['id_butir']);
+            $Data[] = [
+                'id_butir'=>$butir[$d],
+                'nilai'=>$nilai[$d],
+                'nip'=>$nip[$d],
+                'id_jadwal'=>$id_jadwal[$d],
+                'created_at'=>$tgl,
+                'updated_at'=>$tgl,
+            ];
+        }
+        // dd($request['mk_tahun_baru']);
+        // DB::table('detail_daftars')->insert($Data);
+        DaftarDetail::insert($Data);
 
 
         // DaftarDetail::create(['id_jadwal'=>$input['id_jadwal'],'id_butir'=>$input['id_butir'],'nilai'=>$input['nilai'],]);
@@ -178,40 +205,125 @@ class DaftarController extends Controller
         // DaftarDetail::create($finalArray);
 
         return redirect()->route('daftars.index')
-                        ->with('success','Daftar berhasil dilakukan.');
+                        ->with('success','Daftar berhasil ditambahkan.');
 
         // dd($request->all());
     }
 
-    public function daftar($id)
+    public function show(Daftar $daftar)
     {
-        $id_jadwal = $id;
+        // return view('jadwals.show',compact('jadwal'));
+    }
+    
+    public function edit(Daftar $daftar)
+    {
         $data = VwPrakomDetail::where('id_user', Auth::user()->id)->get();
 
         // dd($data[0]['jenjang_jabatan']);
         $butir = VwButir::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
-        // dd($data);
-        return view('daftars.create',compact('id_jadwal', 'data', 'butir'));
+        return view('daftars.edit',compact('daftar', 'data', 'butir'));
     }
-    
-    public function create($id)
+
+    public function update(Request $request, Daftar $daftar)
     {
-        $id_jadwal = $id;
-        return view('daftars.create',compact('id_jadwal'));
-        // dd($id);
+        
+        // dd($request['id_daftar']);
+        // request()->validate([
+        //     'mk_tahun_baru' => 'required',
+        //     'mk_bulan_baru' => 'required',
+        //     'pengembangan_profesi' => 'required',
+        //     'unsur_penunjang' => 'required',
+        //     'id_butir' => 'required',
+        //     'nilai' => 'required',
+        //     'id_jadwal' => 'required',
+        // ]);
+        
+        // dd($butir);
+
+        $input = $request->all();
+        // dd($input);
+        
+        $upload_path = 'public/documents/';
+        
+        if ($request->hasfile('surat_pengantar') && $request->hasfile('laporan_kegiatan')) {
+            request()->validate([
+            'surat_pengantar' => 'required|mimes:pdf',
+            'laporan_kegiatan' => 'required|mimes:pdf',
+            ]);
+            
+            $file = $request->file('surat_pengantar');
+            $file_name = 'srt_pengantar' . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->storeAs($upload_path, $file_name);
+            $input['surat_pengantar'] = $file_name;
+
+            $file2 = $request->file('laporan_kegiatan');
+            $file_name2 = 'lprn_kegiatan' . date('YmdHis') . "." . $file2->getClientOriginalExtension();
+            $file2->storeAs($upload_path, $file_name2); 
+            $input['laporan_kegiatan'] = $file_name2;
+
+            $data2 = ['mk_tahun_baru'=>$input['mk_tahun_baru'], 'mk_bulan_baru'=>$input['mk_bulan_baru'], 'pengembangan_profesi'=>$input['pengembangan_profesi'], 'unsur_penunjang'=>$input['unsur_penunjang'], 'surat_pengantar'=>$file_name, 'laporan_kegiatan'=>$file_name2];
+        }
+        else{
+            if($request->hasfile('surat_pengantar')){
+                request()->validate([
+                'surat_pengantar' => 'required|mimes:pdf',
+            ]);
+                $file = $request->file('surat_pengantar');
+                $file_name = 'srt_pengantar' . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->storeAs($upload_path, $file_name);
+                $input['surat_pengantar'] = $file_name;
+                
+                $data2 = ['mk_tahun_baru'=>$input['mk_tahun_baru'], 'mk_bulan_baru'=>$input['mk_bulan_baru'], 'pengembangan_profesi'=>$input['pengembangan_profesi'], 'unsur_penunjang'=>$input['unsur_penunjang'], 'surat_pengantar'=>$file_name];
+            }
+            else if($request->hasfile('laporan_kegiatan')){
+                request()->validate([
+                    'laporan_kegiatan' => 'required|mimes:pdf',
+                ]);
+                $file2 = $request->file('laporan_kegiatan');
+                $file_name2 = 'lprn_kegiatan' . date('YmdHis') . "." . $file2->getClientOriginalExtension();
+                $file2->storeAs($upload_path, $file_name2); 
+                $input['laporan_kegiatan'] = $file_name2;
+                
+                $data2 = ['mk_tahun_baru'=>$input['mk_tahun_baru'], 'mk_bulan_baru'=>$input['mk_bulan_baru'], 'pengembangan_profesi'=>$input['pengembangan_profesi'], 'unsur_penunjang'=>$input['unsur_penunjang'], 'laporan_kegiatan'=>$file_name2];
+            }
+            else{
+                //
+                $data2 = ['mk_tahun_baru'=>$input['mk_tahun_baru'], 'mk_bulan_baru'=>$input['mk_bulan_baru'], 'pengembangan_profesi'=>$input['pengembangan_profesi'], 'unsur_penunjang'=>$input['unsur_penunjang']];
+            }
+        }
+            
+        Daftar::where('id', $request['id_daftar'])->update($data2);
+        
+        $input[] = $request->all();
+
+        $butir = $request->get('id_butir');
+        $nilai = $request->get('nilai');
+        $id_detail = $request->get('id_detail');
+        $nip = $request->get('nip');
+        $id_jadwal = $request->get('id_jadwal');
+        $tgl = Carbon::now()->toDateTimeString();
+        $count = count($butir);
+        // dd($count);
+        // $Data = [];
+        // foreach($request->get('id_butir') as $d=>$item)
+        for($i = 0; $i<$count; $i++)
+        {
+            $data = DaftarDetail::where('id', $id_detail[$i])->first();
+        //     // dd($d['id_butir']);
+            $data->update(['nilai' => $nilai[$i]]);
+            // dd($data);
+        }
+
+        return redirect()->route('daftars.index')
+                        ->with('success','Daftar sudah dirubah.');
+
     }
 
-    public function ajuDupak(Request $request){
-        // $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+    public function ajuDupak($id){
+        Daftar::where('id', $id)->update(['status_daftar' => 2]);
 
-        // // dd($request->all());
-        // $pisah = explode(',', $request['sub_unsur']);
-
-        // $butir = VwButir::where('no_unsur', $pisah[0])->where('no_sub_unsur', $pisah[1])->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
-        
-        // if(count($butir) > 0){
-        //     return response()->json($butir);
-        // }
+        return redirect()->route('daftars.index')
+                        ->with('success','Dupak Sudah Diajukan. Anda tidak bisa lagi merubah data pengajuan dupak. Terima Kasih...');
     }
 
     public function getUnsur(Request $request){

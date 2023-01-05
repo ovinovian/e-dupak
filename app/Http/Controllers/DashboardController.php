@@ -39,6 +39,7 @@ class DashboardController extends Controller
             
             $data = 1;
             // dd($jadwals[0]['daftar_mulai']);
+            // dd($data);
 
             return view('dashboard',compact('data','jadwals'));
         }

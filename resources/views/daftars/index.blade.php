@@ -7,6 +7,7 @@
 <link href="{{ asset('assets/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 <!-- third party css end -->
 
 @endsection
@@ -176,104 +177,225 @@
                             class="mdi mdi-airplane-takeoff"></i>Jadwal Pendaftaran Sudah Lewat</button>
                     @endif
                     @else
-                    <div class="tab-content mt-3">
-                        <div class="tab-pane show active" id="scroll-horizontal-preview">
-                            <table id="scroll-horizontal-datatable" class="table w-100 nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>Status</th>
-                                        <th>Aksi</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($daftarAju as $key => $dftAju)
-                                    <tr>
-                                        <td>Sudah Mendaftar</td>
-                                        <td>
-                                            <div>
-                                                <form action="{{ route('daftars.destroy',$dftAju->id) }}" method="POST">
-                                                    <a class="btn btn-primary"
-                                                        href="{{ route('jadwals.edit',$dftAju->id) }}">Rubah</a>
-
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    @if($dftAju->status_daftar == 0)
-                                                    <button type="submit" class="btn btn-danger"
-                                                        onclick="return confirm('Apakah yakin ingin menghapus jadwal?');">Hapus</button>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Status Pendaftaran</h4>
+                                    <!-- end nav-->
+                                    <div class="grid-structure">
+                                        <div class="card-body">
+                                            <div class="row mb-2">
+                                                <div class="col-md-1">
+                                                    @if($daftarAju[0]['status_daftar']==2)
+                                                    <button class="btn btn-primary disabled" disabled>Rubah</button>
                                                     @else
-                                                    <button class="btn btn-danger" disabled>Hapus</button>
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('daftars.edit',$daftarAju[0]['id_daftar']) }}">Rubah</a>
                                                     @endif
-                                                </form>
-
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <form action="{{ route('ajuDupak',$daftarAju[0]['id_daftar']) }}"
+                                                        method="GET">
+                                                        @csrf
+                                                        @method('GET')
+                                                        @if($daftarAju[0]['status_daftar']==2)
+                                                        <button class="btn btn-success" disabled>Sudah diajukan</button>
+                                                        @else
+                                                        <button type="submit" class="btn btn-success"
+                                                            onclick="return confirm('Apakah yakin ingin mengajukan dupak?');">Aju
+                                                            Dupak</button>
+                                                        @endif
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </td>
-                                        <td>
-                                            <form action="{{ route('ajuDupak',$dftAju->id) }}" method="GET">
-                                                @csrf
-                                                @method('GET')
-                                                @if($dftAju->status_aju == 2)
-                                                <button class="btn btn-success" disabled>Sudah diajukan</button>
-                                                @else
-                                                <button type="submit" class="btn btn-success"
-                                                    onclick="return confirm('Apakah yakin ingin mengajukan dupak?');">Publish</button>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Status
+                                                </div>
+                                                <div class="col-md-3">Sudah Mendaftar, Belum Diajukan
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Masa Kerja Penilaian Saat Ini
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ $daftarAju[0]['mk_tahun_baru'] }} Tahun {{
+                                                    $daftarAju[0]['mk_bulan_baru'] }} Baru
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Surat Pengantar
+                                                </div>
+                                                <div class="col-md-3"><iframe src="{{ asset('storage/documents/'.$daftarAju[0]['surat_pengantar'].'')
+                                                    }}" frameborder="0"></iframe>
+
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Laporan Kegiatan
+                                                </div>
+                                                <div class="col-md-3"><iframe src="{{ asset('storage/documents/'.$daftarAju[0]['laporan_kegiatan'].'')
+                                                                                                }}"
+                                                        frameborder="0"></iframe>
+
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Total Usulan
+                                                </div>
+                                                <div class="col-md-3">{{
+                                                    $daftarAju[0]['tugas_jabatan']+$daftarAju[0]['pengembangan_profesi']+$daftarAju[0]['unsur_penunjang']
+                                                    }}
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Unsur Utama (Pengembangan Profesi + Tugas Jabatan)
+                                                </div>
+                                                <div class="col-md-3">{{
+                                                    $daftarAju[0]['tugas_jabatan']+$daftarAju[0]['pengembangan_profesi']
+                                                    }} ( {{ $daftarAju[0]['pengembangan_profesi'] }} + {{
+                                                    $daftarAju[0]['tugas_jabatan'] }} )
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+                                                <div class="col-md-4">Unsur Penunjang
+                                                </div>
+                                                <div class="col-md-3">{{
+                                                    $daftarAju[0]['unsur_penunjang'] }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Butir Kegiatan</h4>
+                                        <!-- end nav-->
+                                        <div class="grid-structure">
+                                            {{ $no_unsur = "" }}
+                                            {{ $no_sub_unsur = "" }}
+                                            <div class="card-body">
+                                                @foreach ($butir as $item)
+                                                <!-- task -->
+                                                @if($item->no_unsur != $no_unsur)
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12"><button type="button" class="btn btn-primary"
+                                                            disabled>Unsur
+                                                            : {{
+                                                            $item->no_unsur }}.
+                                                            {{ $item->unsur }}</button>
+                                                    </div> <!-- end col -->
+                                                    @php
+                                                    $no_unsur = $item->no_unsur;
+                                                    @endphp
+                                                </div>
                                                 @endif
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div> <!-- end preview-->
-                    </div> <!-- end tab-content-->
-                    @endif
-                    @else
-                    <h5 class="mt-3">Keterangan:</h5>
+                                                @if($item->no_sub_unsur != $no_sub_unsur)
+                                                <div class="row mb-2">
+                                                    <div class="col-md-12"><button type="button" class="btn btn-success"
+                                                            disabled>>>>
+                                                            Sub
+                                                            Unsur : {{
+                                                            $item->no_sub_unsur }}. {{ $item->sub_unsur }}</div>
+                                                    <!-- end col -->
+                                                    @php
+                                                    $no_sub_unsur = $item->no_sub_unsur;
+                                                    @endphp
+                                                </div>
+                                                @endif
+                                                <div class="row mb-2">
+                                                    <!-- end col -->
+                                                    <div class="col-sm-8"><button type="button"
+                                                            class="btn btn-outline-info text-left" disabled>>>>>>>
+                                                            Uraian Kegiatan : {{ $item->no_uraian_kegiatan }}. {{
+                                                            $item->uraian_kegiatan
+                                                            }}
+                                                    </div> <!-- end col -->
+                                                    @php
+                                                    $nilai = App\Models\DaftarDetail::where('id_jadwal',
+                                                    $daftarAju[0]['id_jadwal'])->where('id_butir',
+                                                    $item['id'])->first();
+                                                    @endphp
+                                                    <div class="col-sm-1"><input type="text" name="nilai[]"
+                                                            class="form-control text-end" value="{{ $nilai['nilai'] }}"
+                                                            disabled>
+                                                    </div> <!-- end col -->
+                                                </div>
+                                                @endforeach
+                                            </div>
+                                            <!-- end task -->
 
-                    <p class="text-muted mb-4">
-                        Silakan pantau akun Anda untuk melihat jadwal penilaian berikutnya
-                    </p>
-                    @endif
+                                        </div> <!-- end card-body-->
+                                    </div>
+                                </div>
+                            </div>
 
-                    <!-- end sub tasks/checklists -->
+                        </div><!-- end col -->
+                        @endif
+                        @else
+                        <h5 class="mt-3">Keterangan:</h5>
 
-                </div> <!-- end card-body-->
+                        <p class="text-muted mb-4">
+                            Silakan pantau akun Anda untuk melihat jadwal penilaian berikutnya
+                        </p>
+                        @endif
 
-            </div> <!-- end card-->
+                        <!-- end sub tasks/checklists -->
 
-        </div> <!-- end col -->
+                    </div> <!-- end card-body-->
+
+                </div> <!-- end card-->
+
+            </div> <!-- end col -->
+        </div>
+        <!-- end row-->
+
     </div>
-    <!-- end row-->
+    <!-- container -->
 
-</div>
-<!-- container -->
+    @endsection
 
-@endsection
+    @section('script')
 
-@section('script')
+    <!-- third party js -->
+    <script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/responsive.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.flash.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/dataTables.select.min.js') }}"></script>
 
-<!-- third party js -->
-<script src="{{ asset('assets/js/vendor/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.bootstrap5.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.responsive.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/responsive.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.flash.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.keyTable.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/dataTables.select.min.js') }}"></script>
-<!-- third party js ends -->
+    <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
+    <!-- third party js ends -->
 
-<!-- demo app -->
-<script src="{{ asset('assets/js/pages/demo.datatable-init.js') }}"></script>
-<!-- end demo js-->
+    <!-- demo app -->
+    <script src="{{ asset('assets/js/pages/demo.datatable-init.js') }}"></script>
+    <!-- end demo js-->
 
-<script type="text/javascript">
-    if( $('.message').is(':visible') ) {
+    <script type="text/javascript">
+        if( $('.message').is(':visible') ) {
         $(".message").fadeOut(2000);
     }
-</script>
+    </script>
 
-@endsection
+    <script>
+        @if ($message = Session::get('success'))
+            swal(
+                "Selamat ....",
+                "{{ $message }}",
+                "success"
+            )
+        @endif
+    </script>
+
+    @endsection
