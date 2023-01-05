@@ -220,7 +220,7 @@ class DaftarController extends Controller
         // dd($data[0]['jenjang_jabatan']);
         $butir = VwButir::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
         // dd($data);
-        return view('daftars.create',compact('daftar', 'data', 'butir'));
+        return view('daftars.edit',compact('daftar', 'data', 'butir'));
     }
 
     public function ajuDupak($id){
