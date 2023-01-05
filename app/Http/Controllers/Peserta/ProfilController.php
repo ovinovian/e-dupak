@@ -43,11 +43,11 @@ class ProfilController extends Controller
         // dd($users);
         if(!$profils->isEmpty()){
             $profils[0]['tgl_lahir'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tgl_lahir'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $profils[0]['tmt_jabatan'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tmt_jabatan'])
-                                ->format('d-m-Y');
+                                ->translatedFormat('d F Y');
             $profils[0]['tmt_pangkat'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tmt_pangkat'])
-                                ->format('d-m-Y');
+                                ->translatedFormat('d F Y');
             return view('peserta.profil.index',compact('users','profils'));
         }
         else{

@@ -2,7 +2,6 @@
 
 @section('style')
 <link href="{{ asset('assets/css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css">
-<link href="{{asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 <style>
     .card-1 {
@@ -24,6 +23,7 @@
 @endsection
 
 @section('content')
+
 <div class="container-fluid">
 
     <!-- start page title -->
@@ -38,7 +38,52 @@
         </div>
     </div>
     @endif
-    
+
+    <div class="row mt-4">
+        <div class="col-xl-3 col-lg-4">
+            <div class="card tilebox-one card-3">
+                <div class="card-body">
+                    <i class='uil uil-users-alt float-end'></i>
+                    <h6 class="text-uppercase mt-0">Prakom Terdaftar</h6>
+                    <h2 class="my-2">0</h2>
+                </div> <!-- end card-body-->
+            </div>
+            <!--end card-->
+        </div> <!-- end col -->
+        <div class="col-xl-3 col-lg-4">
+
+            <div class="card tilebox-one">
+                <div class="card-body">
+                    <i class='uil uil-users-alt float-end'></i>
+                    <h6 class="text-uppercase mt-0">Prakom Daftar Penilaian</h6>
+                    <h2 class="my-2">0</h2>
+                </div> <!-- end card-body-->
+            </div>
+            <!--end card-->
+        </div>
+        <div class="col-xl-3 col-lg-4">
+            <div class="card tilebox-one card-3">
+                <div class="card-body">
+                    <i class='uil uil-users-alt float-end'></i>
+                    <h6 class="text-uppercase mt-0">Prakom Syarat Minimal </h6>
+                    <h2 class="my-2">0</h2>
+                </div> <!-- end card-body-->
+            </div>
+            <!--end card-->
+        </div> <!-- end col -->
+
+        <div class="col-xl-3 col-lg-4">
+            <div class="card tilebox-one">
+                <div class="card-body">
+                    <i class='uil uil-users-alt float-end'></i>
+                    <h6 class="text-uppercase mt-0">Prakom Belum Syarat Minimal</h6>
+                    <h2 class="my-2">0</h2>
+                </div> <!-- end card-body-->
+            </div>
+            <!--end card-->
+        </div> <!-- end col -->
+    </div>
+
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card mt-3">
@@ -61,27 +106,27 @@
                                 @else
                                 <tr>
                                     <td>Pendaftaran</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->daftar_mulai }} s.d. {{
-                                        $jadwals[0]->daftar_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->daftar_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->daftar_selesai }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Persiapan</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{ $jadwals[0]->siap_mulai
-                                        }} s.d. {{
-                                        $jadwals[0]->siap_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{ $jadwals[0]->siap_mulai
+                                    }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->siap_selesai }}</strong> </td>
                                 </tr>
                                 <tr>
                                     <td>Penilaian</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->nilai_mulai }} s.d. {{
-                                        $jadwals[0]->nilai_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->nilai_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->nilai_selesai }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Sidang</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->sidang_mulai }} s.d. {{
-                                        $jadwals[0]->sidang_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->sidang_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->sidang_selesai }}</strong></td>
                                 </tr>
                                 @endif
                             </tbody>
@@ -94,56 +139,11 @@
 
 
     </div>
-    <!-- end row -->
 
-    <div class="row">
-        <div class="col-xl-3 col-lg-4">
-            <div class="card tilebox-one">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Prakom Terdaftar</h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
-        </div> <!-- end col -->
-        <div class="col-xl-3 col-lg-4">
-
-            <div class="card tilebox-one card-1">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Prakom Daftar Penilaian</h6>
-                    <h2 class="my-2" id="active-views-count">0</h2>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
-        </div>
-        <div class="col-xl-3 col-lg-4">
-            <div class="card tilebox-one">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Prakom Syarat Minimal </h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
-        </div> <!-- end col -->
-
-        <div class="col-xl-3 col-lg-4">
-            <div class="card tilebox-one card-1">
-                <div class="card-body">
-                    <i class='uil uil-users-alt float-end'></i>
-                    <h6 class="text-uppercase mt-0">Prakom Belum Syarat Minimal</h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
-                </div> <!-- end card-body-->
-            </div>
-            <!--end card-->
-        </div> <!-- end col -->
-
-
-    </div>
+    
 
 </div>
+<!-- container -->
 <!-- container -->
 @endsection
 @section('script')
@@ -153,13 +153,6 @@
 
 <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
 <script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
-<!-- third party js ends -->
-
-<script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.bootstrap5.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.html5.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.flash.min.js') }}"></script>
-<script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
 <!-- third party js ends -->
 
 <!-- demo app -->

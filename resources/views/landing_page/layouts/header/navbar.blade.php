@@ -1,4 +1,4 @@
-<!-- Topbar Start -->
+ <!-- Topbar Start -->
 <div class="navbar-custom topnav-navbar">
     <div class="container-fluid">
 
@@ -45,13 +45,7 @@
             </li>
 
         </ul>
-        <a class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
-            <div class="lines">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </a>
+       
     </div>
 </div>
 <!-- end Topbar -->
@@ -59,17 +53,16 @@
 <div class="topnav">
     <div class="container-fluid">
         <nav class="navbar navbar-dark navbar-expand-lg topnav-menu">
-
-            <div class="collapse navbar-collapse" id="topnav-menu-content">
+            <div class="collapse navbar-collapse" id="topnav-menu-content"> 
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" href="#" id="topnav-dashboards" role="button" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link" href="#" id="topnav-dashboards" role="button"
+                            aria-haspopup="true">
                             <i class="uil-dashboard me-1"></i>e-DUPAK PROVINSI KEPULAUAN BANGKA BELITUNG
                         </a>
                     </li>
-                </ul>
-            </div>
+                </ul> 
+            </div> 
         </nav>
     </div>
 </div>

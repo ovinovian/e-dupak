@@ -51,27 +51,27 @@
                                 @else
                                 <tr>
                                     <td>Pendaftaran</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->daftar_mulai }} s.d. {{
-                                        $jadwals[0]->daftar_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->daftar_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->daftar_selesai }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Persiapan</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{ $jadwals[0]->siap_mulai
-                                        }} s.d. {{
-                                        $jadwals[0]->siap_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{ $jadwals[0]->siap_mulai
+                                    }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->siap_selesai }}</strong> </td>
                                 </tr>
                                 <tr>
                                     <td>Penilaian</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->nilai_mulai }} s.d. {{
-                                        $jadwals[0]->nilai_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->nilai_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->nilai_selesai }}</strong></td>
                                 </tr>
                                 <tr>
                                     <td>Sidang</td>
-                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal {{
-                                        $jadwals[0]->sidang_mulai }} s.d. {{
-                                        $jadwals[0]->sidang_selesai }}</td>
+                                    <td><i class="uil-schedule me-1"></i>Dimulai dari tanggal <strong>{{
+                                        $jadwals[0]->sidang_mulai }}</strong> s.d. <strong>{{
+                                        $jadwals[0]->sidang_selesai }}</strong></td>
                                 </tr>
                                 @endif
                             </tbody>
