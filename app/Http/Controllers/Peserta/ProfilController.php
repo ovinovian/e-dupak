@@ -19,15 +19,15 @@ use App\Models\User;
 class ProfilController extends Controller
 {
     //
-    // function __construct()
-    // {
+    function __construct()
+    {
 
-    //     $this->middleware('permission:daftar-list|daftar-create|daftar-edit|daftar-delete', ['only' => ['index','show']]);
-    //     $this->middleware('permission:daftar-create', ['only' => ['create','store']]);
-    //     $this->middleware('permission:daftar-edit', ['only' => ['edit','update']]);
-    //     $this->middleware('permission:daftar-delete', ['only' => ['destroy']]);
-    //     $this->middleware('permission:daftar-publish', ['only' => ['publish']]);
-    // }
+        $this->middleware('permission:profil-list|profil-create|profil-edit|profil-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:profil-create', ['only' => ['create','store']]);
+        $this->middleware('permission:profil-edit', ['only' => ['edit_profil','ubah_profil']]);
+        $this->middleware('permission:profil-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:profil-gettkjab', ['only' => ['getTkJab']]);
+    }
 
     /**
      * Display a listing of the resource.

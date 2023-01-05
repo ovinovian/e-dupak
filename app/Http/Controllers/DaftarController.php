@@ -22,15 +22,15 @@ use Illuminate\Support\Facades\DB;
 class DaftarController extends Controller
 {
     //
-    // function __construct()
-    // {
+    function __construct()
+    {
 
-    //     $this->middleware('permission:daftar-list|daftar-create|daftar-edit|daftar-delete', ['only' => ['index','show']]);
-    //     $this->middleware('permission:daftar-create', ['only' => ['create','store']]);
-    //     $this->middleware('permission:daftar-edit', ['only' => ['edit','update']]);
-    //     $this->middleware('permission:daftar-delete', ['only' => ['destroy']]);
-    //     $this->middleware('permission:daftar-publish', ['only' => ['publish']]);
-    // }
+        $this->middleware('permission:daftar-list|daftar-create|daftar-edit|daftar-delete', ['only' => ['index','show']]);
+        $this->middleware('permission:daftar-create', ['only' => ['daftar','store']]);
+        $this->middleware('permission:daftar-edit', ['only' => ['edit','update']]);
+        // $this->middleware('permission:daftar-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:daftar-ajudupak', ['only' => ['ajuDupak']]);
+    }
 
     public function index()
     {
@@ -48,21 +48,21 @@ class DaftarController extends Controller
         
         if(!$jadwals->isEmpty()){
             $jadwals[0]['daftar_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_mulai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['daftar_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_selesai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['siap_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['siap_mulai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['siap_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['siap_selesai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['nilai_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_mulai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['nilai_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_selesai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['sidang_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_mulai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             $jadwals[0]['sidang_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_selesai'])
-            ->format('d-m-Y');
+            ->translatedFormat('d F Y');
             // $jadwals[]
             
             $data = 1;

@@ -51,8 +51,8 @@
                     </h4>
 
                     <div class="tab-content">
-                        <div class="tab-pane show active" id="scroll-vertical-preview">
-                            <table id="scroll-vertical-datatable" class="table dt-responsive nowrap">
+                        <div class="tab-pane show active" id="scroll-horizontal-preview">
+                            <table id="scroll-horizontal-datatable" class="table w-100 nowrap">
                                 <thead>
                                     <tr>
                                         <th>No</th>

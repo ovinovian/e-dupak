@@ -13,6 +13,18 @@ use Illuminate\Support\Arr;
 
 class PrakomController extends Controller
 {
+    function __construct()
+    {
+
+        $this->middleware('permission:prakom-list|prakom-create|prakom-edit|prakom-delete', ['only' => ['index','show']]);
+        // $this->middleware('permission:prakom-create', ['only' => ['create','store']]);
+        // $this->middleware('permission:prakom-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:prakom-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:prakom-setuju', ['only' => ['setuju']]);
+        $this->middleware('permission:prakom-nonaktif', ['only' => ['nonaktif']]);
+        $this->middleware('permission:prakom-angkat', ['only' => ['angkat']]);
+    }
+
     /**
 
      * Display a listing of the resource.
@@ -267,5 +279,16 @@ class PrakomController extends Controller
 
         // dd($data);
         return redirect()->route('prakoms.index')->with('success','User sudah dinonaktifkan');
+    }
+
+    public function angkat($id)
+    {
+        // $input = $request->all();
+        $user = User::where('id', $id)->first();
+
+        $user->assignRole('3');
+
+        // dd($data);
+        return redirect()->route('prakoms.index')->with('success','User dijadikan sebagai tim penilai');
     }
 }

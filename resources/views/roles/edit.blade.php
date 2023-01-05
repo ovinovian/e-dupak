@@ -1,104 +1,103 @@
 @extends('layouts.app')
 
-
-
 @section('content')
 
-<div class="row">
+<div class="container-fluid">
 
-    <div class="col-lg-12 margin-tb">
-
-        <div class="pull-left">
-
-            <h2>Edit Role</h2>
-
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Forms</a></li>
+                        <li class="breadcrumb-item active">Form Elements</li>
+                    </ol>
+                </div>
+                <h4 class="page-title"><a class="btn btn-primary" href="{{ route('roles.index') }}">Kembali</a></h4>
+            </div>
         </div>
-
-        <div class="pull-right">
-
-            <a class="btn btn-primary" href="{{ route('roles.index') }}"> Back</a>
-
-        </div>
-
     </div>
+    <!-- end page title -->
 
-</div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    @if (count($errors) > 0)
 
+                    <div class="alert alert-danger">
+                        <strong>Uppss!</strong> Ada yang salah dengan isian Anda.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
 
+                    @endif
+                    <h4 class="header-title">Form Rubah Permission
+                    </h4>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="floating-preview">
+                            {!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
 
-@if (count($errors) > 0)
+                            <div class="row">
 
-<div class="alert alert-danger">
+                                <div class="col-xs-12 col-sm-12 col-md-12">
 
-    <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                    <div class="form-group">
 
-    <ul>
+                                        <strong>Name:</strong>
 
-        @foreach ($errors->all() as $error)
+                                        {!! Form::text('name', null, array('placeholder' => 'Name','class' =>
+                                        'form-control')) !!}
 
-        <li>{{ $error }}</li>
+                                    </div>
 
-        @endforeach
+                                </div>
 
-    </ul>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
 
-</div>
+                                    <div class="form-group">
 
-@endif
+                                        <strong>Permission:</strong>
 
+                                        <br />
 
+                                        @foreach($permission as $value)
 
-{!! Form::model($role, ['method' => 'PATCH','route' => ['roles.update', $role->id]]) !!}
+                                        <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id,
+                                            $rolePermissions) ? true : false,
+                                            array('class' => 'name')) }}
 
-<div class="row">
+                                            {{ $value->name }}</label>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <br />
 
-        <div class="form-group">
+                                        @endforeach
 
-            <strong>Name:</strong>
+                                    </div>
 
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+                                </div>
 
-        </div>
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
 
-    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
 
-    <div class="col-xs-12 col-sm-12 col-md-12">
+                                </div>
 
-        <div class="form-group">
+                            </div>
 
-            <strong>Permission:</strong>
+                            {!! Form::close() !!}
+                        </div>
+                    </div> <!-- end tab-content-->
+                </div> <!-- end card-body -->
+            </div> <!-- end card -->
+        </div><!-- end col -->
+    </div><!-- end row -->
 
-            <br />
-
-            @foreach($permission as $value)
-
-            <label>{{ Form::checkbox('permission[]', $value->id, in_array($value->id, $rolePermissions) ? true : false,
-                array('class' => 'name')) }}
-
-                {{ $value->name }}</label>
-
-            <br />
-
-            @endforeach
-
-        </div>
-
-    </div>
-
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-    </div>
-
-</div>
-
-{!! Form::close() !!}
-
-
+</div> <!-- container -->
 
 @endsection
-
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>

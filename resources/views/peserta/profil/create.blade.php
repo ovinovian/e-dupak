@@ -300,12 +300,8 @@
                                                 <label class="col-md-3 col-form-label" for="name3"> Unit Kerja
                                                 </label>
                                                 <div class="col-md-5 mb-2">
-                                                    <select class="form-control select2" data-toggle="select2"
-                                                        name="unit_kerja">
-                                                        <option>--- Pilih Unit Kerja ---</option>
-                                                        <option value="AK">Alaska</option>
-                                                        <option value="HI">Hawaii</option>
-                                                    </select>
+                                                    <input type="text" id="name3" name="unit_kerja"
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                         </div>

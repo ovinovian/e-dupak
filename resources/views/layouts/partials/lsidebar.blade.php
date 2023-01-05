@@ -38,69 +38,77 @@
             </li>
             @else
             <li class="side-nav-item">
-                <a href="{{ route('dashboard') }}" 
-                    aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                <a href="{{ route('dashboard') }}" aria-expanded="false" aria-controls="sidebarDashboards"
+                    class="side-nav-link">
                     <i class="uil-home-alt"></i>
                     <span> Dashboards </span>
                 </a>
             </li>
 
-            @if(Auth::user()->id_user == 0)
+            @can('profil-list')
             <li class="side-nav-item">
                 <a href="{{ route('profil.index') }}" class="side-nav-link">
                     <i class="uil-store"></i>
                     <span> Profil Peserta </span>
                 </a>
             </li>
+            @endcan
+            @can('user-list')
             <li class="side-nav-item">
                 <a href="{{ route('users.index') }}" class="side-nav-link">
                     <i class="uil-calender"></i>
                     <span> User </span>
                 </a>
             </li>
-
+            @endcan
+            @can('prakom-list')
             <li class="side-nav-item">
                 <a href="{{ route('prakoms.index') }}" class="side-nav-link">
                     <i class="uil-calender"></i>
                     <span> Pranata Komputer </span>
                 </a>
             </li>
-
+            @endcan
+            @can('role-list')
             <li class="side-nav-item">
                 <a href="{{ route('roles.index') }}" class="side-nav-link">
                     <i class="uil-comments-alt"></i>
                     <span> Role </span>
                 </a>
             </li>
-
+            @endcan
+            @can('perm-list')
             <li class="side-nav-item">
                 <a href="{{ route('perms.index') }}" class="side-nav-link">
                     <i class="uil-comments-alt"></i>
                     <span> Permission </span>
                 </a>
             </li>
-
+            @endcan
+            @can('jadwal-list')
             <li class="side-nav-item">
                 <a href="{{ route('jadwals.index') }}" class="side-nav-link">
                     <i class="uil-store"></i>
                     <span> Jadwal </span>
                 </a>
             </li>
-
+            @endcan
+            @can('daftar-list')
             <li class="side-nav-item">
                 <a href="{{ route('daftars.index') }}" class="side-nav-link">
                     <i class="uil-store"></i>
                     <span> Daftar </span>
                 </a>
             </li>
-
+            @endcan
+            @can('tim-list')
             <li class="side-nav-item">
                 <a href="{{ route('tims.index') }}" class="side-nav-link">
                     <i class="uil-envelope"></i>
                     <span> Tim Penilai </span>
                 </a>
             </li>
-            @endif
+            @endcan
             @endguest
         </ul>
 
