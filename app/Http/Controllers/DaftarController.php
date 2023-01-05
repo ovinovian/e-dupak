@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Jadwal;
+use App\Models\Daftar;
+use App\Models\DaftarDetail;
+use App\Models\User;
 use App\Models\VwDaftar;
+use App\Models\VwDaftarAju;
 use App\Models\VwJadwal;
 use App\Models\VwPrakomDetail;
 use App\Models\VwUnsur;
 use App\Models\VwSubUnsur;
 use App\Models\VwButir;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DaftarController extends Controller
 {
@@ -31,37 +36,47 @@ class DaftarController extends Controller
     {
         $jadwals = VwJadwal::all();
         $daftars = VwDaftar::all();
-
+        
         if(!$daftars->isEmpty()){
             $dft = 1;
         }
         else {
             $dft = 0;
         }
-
+        
         if(!$jadwals->isEmpty()){
             $jadwals[0]['daftar_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_mulai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['daftar_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['daftar_selesai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['siap_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['siap_mulai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['siap_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['siap_selesai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['nilai_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_mulai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['nilai_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['nilai_selesai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['sidang_mulai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_mulai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             $jadwals[0]['sidang_selesai'] = Carbon::createFromFormat('Y-m-d', $jadwals[0]['sidang_selesai'])
-                                ->format('d-m-Y');
+            ->format('d-m-Y');
             // $jadwals[]
             
             $data = 1;
             // dd($jadwals[0]['daftar_mulai']);
-
-            return view('daftars.index',compact('data','jadwals','dft'));
+            
+            $daftarAju = VwDaftarAju::where('id', Auth::user()->id)->get();
+            // dd($daftarAju);
+            
+            if(!$daftarAju->isEmpty()){
+                $aju = 1;
+                return view('daftars.index',compact('data','jadwals','dft', 'daftarAju', 'aju'));
+            }
+            else{
+                $aju = 0;
+                return view('daftars.index',compact('data','jadwals','dft', 'aju'));
+            }
         }
         else {
             $data = 0;
@@ -84,45 +99,94 @@ class DaftarController extends Controller
     
     public function store(Request $request)
     {
+        
         request()->validate([
             'mk_tahun_baru' => 'required',
             'mk_bulan_baru' => 'required',
-            '' => 'required',
-            'siap_mulai' => 'required',
-            'siap_selesai' => 'required',
-            'nilai_mulai' => 'required',
-            'nilai_selesai' => 'required',
-            'sidang_mulai' => 'required',
-            'sidang_selesai' => 'required',
+            'surat_pengantar' => 'required|mimes:pdf',
+            'laporan_kegiatan' => 'required|mimes:pdf',
+            'id_butir' => 'required',
+            'nilai' => 'required',
+            'id_jadwal' => 'required',
         ]);
+        
+        $butir = $request->get('id_butir');
+        $nilai = $request->get('nilai');
+        $nip = $request->get('nip');
+        $id_jadwal = $request->get('id_jadwal');
+        $tgl = Carbon::now()->toDateTimeString();
+        // dd($butir);
+        $input[] = $request->all();
+        $Data = [];
+        foreach($request->get('id_butir') as $d=>$item)
+        {
+            // dd($d['id_butir']);
+            $Data[] = [
+                'id_butir'=>$butir[$d],
+                'nilai'=>$nilai[$d],
+                'nip'=>$nip[$d],
+                'id_jadwal'=>$id_jadwal[$d],
+                'created_at'=>$tgl,
+                'updated_at'=>$tgl,
+            ];
+        }
+        // dd($Data);
+        // DB::table('detail_daftars')->insert($Data);
+        DaftarDetail::insert($Data);
+        
+        // dd($Data);
+        
+        if ($request->hasfile('surat_pengantar') && $request->hasfile('laporan_kegiatan')) {
+            $upload_path = 'public/documents/';
+            $file = $request->file('surat_pengantar');
+            $file2 = $request->file('laporan_kegiatan');
+            $file_name = 'srt_pengantar' . date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->storeAs($upload_path, $file_name);
+            $file_name2 = 'lprn_kegiatan' . date('YmdHis') . "." . $file2->getClientOriginalExtension();
+            $file2->storeAs($upload_path, $file_name2); 
+            $input['surat_pengantar'] = $file_name;
+            $input['laporan_kegiatan'] = $file_name2;
+        }
+        else{
+            //
+            $message = "Gagal";
+        }
+        
+        // $daftar['nip'] = $input['nip'];
+        
+        // $detail['id_butir'] = json_decode($input['id_butir']);
+        // $detail['nilai'] = json_decode($input['nilai']);
+        // // dd($input);
+        // dd($detail['id_butir']);
 
-        $input = $request->all();
-        $input['daftar_mulai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_mulai)
-                            ->format('Y-m-d');
-        $input['daftar_selesai'] =Carbon::createFromFormat('d-m-Y', $request->daftar_selesai)
-                            ->format('Y-m-d');
-        $input['siap_mulai'] =Carbon::createFromFormat('d-m-Y', $request->siap_mulai)
-                            ->format('Y-m-d');
-        $input['siap_selesai'] =Carbon::createFromFormat('d-m-Y', $request->siap_selesai)
-                            ->format('Y-m-d');
-        $input['nilai_mulai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_mulai)
-                            ->format('Y-m-d');
-        $input['nilai_selesai'] =Carbon::createFromFormat('d-m-Y', $request->nilai_selesai)
-                            ->format('Y-m-d');
-        $input['sidang_mulai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_mulai)
-                            ->format('Y-m-d');
-        $input['sidang_selesai'] =Carbon::createFromFormat('d-m-Y', $request->sidang_selesai)
-                            ->format('Y-m-d');
+        $data2 = ['nip'=>$nip[0],'id_jadwal'=>$id_jadwal[0],'surat_pengantar'=>$file_name, 'laporan_kegiatan'=>$file_name2,'mk_tahun_baru'=>$input[0]['mk_tahun_baru'], 'mk_bulan_baru'=>$input[0]['mk_bulan_baru'],'status_daftar'=>'1'];
+        // dd($data2);
 
-        Jadwal::create($input);
-        return redirect()->route('jadwals.index')
-                        ->with('success','Jadwal berhasil ditambahkan.');
+        Daftar::create($data2);
+
+
+        // DaftarDetail::create(['id_jadwal'=>$input['id_jadwal'],'id_butir'=>$input['id_butir'],'nilai'=>$input['nilai'],]);
+        // $finalArray = array();
+        // foreach($input as $key=>$value){
+        //     array_push($finalArray, array(
+        //         'id_jadwal'=>$value['id_jadwal'],
+        //         'id_butir'=>$value['id_butir'],
+        //         'nilai'=>$value['nilai'])
+        //     );
+        // };
+
+        // DaftarDetail::create($finalArray);
+
+        return redirect()->route('daftars.index')
+                        ->with('success','Daftar berhasil dilakukan.');
+
+        // dd($request->all());
     }
 
     public function daftar($id)
     {
         $id_jadwal = $id;
-        $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+        $data = VwPrakomDetail::where('id_user', Auth::user()->id)->get();
 
         // dd($data[0]['jenjang_jabatan']);
         $butir = VwButir::where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
@@ -135,6 +199,19 @@ class DaftarController extends Controller
         $id_jadwal = $id;
         return view('daftars.create',compact('id_jadwal'));
         // dd($id);
+    }
+
+    public function ajuDupak(Request $request){
+        // $data = VwPrakomDetail::where('id_user', Auth::id())->get();
+
+        // // dd($request->all());
+        // $pisah = explode(',', $request['sub_unsur']);
+
+        // $butir = VwButir::where('no_unsur', $pisah[0])->where('no_sub_unsur', $pisah[1])->where('klasifikasi', $data[0]['jenjang_jabatan'])->where('pelaksana', $data[0]['jenjang_tingkat_jabatan'])->get();
+        
+        // if(count($butir) > 0){
+        //     return response()->json($butir);
+        // }
     }
 
     public function getUnsur(Request $request){

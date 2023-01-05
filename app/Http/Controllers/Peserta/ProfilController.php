@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\VwPrakom;
 use App\Models\VwPrakomDetail;
 use App\Models\Profil;
-use App\Models\Butir;
+use App\Models\VwButirMin;
 use App\Models\User;
 
 class ProfilController extends Controller
@@ -37,14 +37,16 @@ class ProfilController extends Controller
         $users = VwPrakom::where('id', Auth::id())->get();
         $profils = VwPrakomDetail::where('id', Auth::id())->get();
 
-        $tgl_lahir = \Carbon\Carbon::parse($profils[0]->tgl_lahir)->translatedFormat('d F Y');
-        $tmtJabatan = \Carbon\Carbon::parse($profils[0]->tmt_jabatan)->translatedFormat('d F Y');
-        $tmtPangkat = \Carbon\Carbon::parse($profils[0]->tmt_pangkat)->translatedFormat('d F Y');
-        
         
         // dd($users);
         if(!$profils->isEmpty()){
-            return view('peserta.profil.index',compact('users','profils', 'tgl_lahir', 'tmtJabatan', 'tmtPangkat'));
+            $profils[0]['tgl_lahir'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tgl_lahir'])
+            ->format('d-m-Y');
+            $profils[0]['tmt_jabatan'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tmt_jabatan'])
+                                ->format('d-m-Y');
+            $profils[0]['tmt_pangkat'] = Carbon::createFromFormat('Y-m-d', $profils[0]['tmt_pangkat'])
+                                ->format('d-m-Y');
+            return view('peserta.profil.index',compact('users','profils'));
         }
         else{
             return view('peserta.profil.create',compact('users'));
@@ -284,7 +286,7 @@ class ProfilController extends Controller
     }
 
     public function getTkJab(Request $request){
-        $tkjab = Butir::where('klasifikasi', $request->klasifikasi)->get();
+        $tkjab = VwButirMin::where('klasifikasi', $request->klasifikasi)->get();
         
         if(count($tkjab) > 0){
             return response()->json($tkjab);

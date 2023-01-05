@@ -4,11 +4,21 @@
             <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#"
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
-                    <img src="{{ asset('assets/images/users/avatar-1.jpg') }}" alt="user-image" class="rounded-circle">
+                    @php
+                    $foto =
+                    \App\Models\Profil::where('nip',auth()->user()->nip)->first();
+                    @endphp
+                    <img src="{{ asset('storage/images/foto/'.$foto->foto.'') }}" alt="user-image"
+                        class="rounded-circle">
                 </span>
                 <span>
-                    <span class="account-user-name">Soeng Souy</span>
+                    @guest
+                    <span class="account-user-name">Menu</span>
+                    <span class="account-position">Akses</span>
+                    @else
+                    <span class="account-user-name">{{ auth()->user()->name }}</span>
                     <span class="account-position">Founder</span>
+                    @endguest
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
@@ -16,12 +26,6 @@
                 <div class=" dropdown-header noti-title">
                     <h6 class="text-overflow m-0">Welcome !</h6>
                 </div>
-
-                <!-- item-->
-                <a href="{{ route('login') }}" class="dropdown-item notify-item">
-                    <i class="mdi mdi-login me-1"></i>
-                    <span>{{ __('Login') }}</span>
-                </a>
 
                 <!-- item-->
                 <a href="{{ route('logout') }}" class="dropdown-item notify-item"

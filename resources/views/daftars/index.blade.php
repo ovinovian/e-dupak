@@ -162,9 +162,10 @@
                     </div>
                     <div class="mb-2">
                         <label class="form-check-label strikethrough" for="checklist2">
-                            2. Dokumen PAK
+                            2. Laporan Kegiatan
                         </label>
                     </div>
+                    @if($aju == 0)
                     @if($dft == 1)
                     <a class="btn btn-outline-danger btn-rounded mb-3" href="{{ route('daftar',$jadwals[0]->id) }}"
                         onclick="return confirm('Apakah yakin ingin mendaftar?');"><i
@@ -173,6 +174,58 @@
                     @else
                     <button type="submit" class="btn btn-outline-danger btn-rounded mb-3" disabled><i
                             class="mdi mdi-airplane-takeoff"></i>Jadwal Pendaftaran Sudah Lewat</button>
+                    @endif
+                    @else
+                    <div class="tab-content mt-3">
+                        <div class="tab-pane show active" id="scroll-horizontal-preview">
+                            <table id="scroll-horizontal-datatable" class="table w-100 nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($daftarAju as $key => $dftAju)
+                                    <tr>
+                                        <td>Sudah Mendaftar</td>
+                                        <td>
+                                            <div>
+                                                <form action="{{ route('daftars.destroy',$dftAju->id) }}" method="POST">
+                                                    <a class="btn btn-primary"
+                                                        href="{{ route('jadwals.edit',$dftAju->id) }}">Rubah</a>
+
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    @if($dftAju->status_daftar == 0)
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="return confirm('Apakah yakin ingin menghapus jadwal?');">Hapus</button>
+                                                    @else
+                                                    <button class="btn btn-danger" disabled>Hapus</button>
+                                                    @endif
+                                                </form>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('ajuDupak',$dftAju->id) }}" method="GET">
+                                                @csrf
+                                                @method('GET')
+                                                @if($dftAju->status_aju == 2)
+                                                <button class="btn btn-success" disabled>Sudah diajukan</button>
+                                                @else
+                                                <button type="submit" class="btn btn-success"
+                                                    onclick="return confirm('Apakah yakin ingin mengajukan dupak?');">Publish</button>
+                                                @endif
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div> <!-- end preview-->
+                    </div> <!-- end tab-content-->
                     @endif
                     @else
                     <h5 class="mt-3">Keterangan:</h5>

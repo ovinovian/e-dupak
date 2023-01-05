@@ -36,7 +36,7 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Sign In</h4>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
                                 <p class="text-muted mb-4">Masukkan Email dan Password Anda
                                 </p>
                             </div>
@@ -58,7 +58,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
+                                    <label for="password" class="col-md-4 col-form-label text-md">{{ __('Password')
                                         }}</label>
 
                                     <div class="input-group input-group-merge">
@@ -78,7 +78,7 @@
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
-                                    <button class="btn btn-primary" type="submit"> Log In </button>
+                                    <button class="btn btn-primary" type="submit"> Masuk </button>
                                 </div>
 
                             </form>
@@ -88,8 +88,11 @@
 
                     <div class="row mt-3">
                         <div class="col-12 text-center">
-                            <p class="text-muted">Don't have an account? <a href="pages-register.html"
-                                    class="text-muted ms-1"><b>Sign Up</b></a></p>
+                            <p class="text-muted">Belum punya akun? <a href="{{ url('/register') }}"
+                                    class="text-muted ms-1"><b>Daftar</b></a></p>
+                            <p class="text-muted"><a href="{{ url('/') }}" class="text-muted ms-1"><b>Kembali ke Halaman
+                                        Muka</b></a>
+                            </p>
                         </div> <!-- end col -->
                     </div>
                     <!-- end row -->

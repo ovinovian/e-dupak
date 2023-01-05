@@ -10,6 +10,7 @@ use App\Http\Controllers\PermController;
 use App\Http\Controllers\Peserta\ProfilController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\TimController;
+use App\Http\Controllers\PrakomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +54,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('perms', PermController::class);
     Route::resource('daftars', DaftarController::class);
     Route::get('/daftar/{id}', [DaftarController::class, 'daftar'])->name('daftar');
+    Route::get('/ajuDupak/{id}', [DaftarController::class, 'ajuDupak'])->name('ajuDupak');
     Route::get('getUnsur', [DaftarController::class, 'getUnsur'])->name('getUnsur');
     Route::get('getSubUnsur', [DaftarController::class, 'getSubUnsur'])->name('getSubUnsur');
     Route::get('getButir', [DaftarController::class, 'getButir'])->name('getButir');
     Route::resource('tims', TimController::class);
+    Route::resource('prakoms', PrakomController::class);
+    Route::get('/angkat/{id}', [PrakomController::class, 'angkat'])->name('angkat');
+    Route::get('/setuju/{id}', [PrakomController::class, 'setuju'])->name('setuju');
+    Route::get('/nonaktif/{id}', [PrakomController::class, 'nonaktif'])->name('nonaktif');
 });

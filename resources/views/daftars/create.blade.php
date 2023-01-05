@@ -73,6 +73,27 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td>Surat Pengantar</td>
+                                                    <td>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-9">
+                                                                <input type="file" id="example-fileinput"
+                                                                    name="surat_pengantar" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Laporan Kegiatan</td>
+                                                    <td>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-9">
+                                                                <input type="file" id="example-fileinput"
+                                                                    name="laporan_kegiatan" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -138,6 +159,8 @@
                                             class="form-control text-right" value="0">
                                     </div> <!-- end col -->
                                     <input type="hidden" name="id_butir[]" value="{{ $item->id }}">
+                                    <input type="hidden" name="id_jadwal[]" value="{{ $id_jadwal }}">
+                                    <input type="hidden" name="nip[]" value="{{ $data[0]->nip }}">
                                 </div>
                                 @endforeach
                             </div>
@@ -149,7 +172,6 @@
             </div>
 
         </div><!-- end col -->
-        <input type="hidden" name="id_jadwal" value="{{ $id_jadwal }}">
         <button type="submit" class="btn btn-danger mb-3"
             onclick="return confirm('Apakah yakin sudah mengisi yang diinginkan?');"><i class=" mdi mdi-minus"></i>
             Simpan</button>

@@ -154,7 +154,8 @@
                                             <div class="row mb-3">
                                                 <label class="col-md-3 col-form-label" for="name3"> NIP</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" id="name3" name="nip" class="form-control">
+                                                    <input type="text" id="name3" name="nip"
+                                                        value="{{ $users[0]->nip }}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
@@ -319,15 +320,17 @@
                                                 <h2 class="mt-0"><i class="mdi mdi-alert"></i></h2>
                                                 <h3 class="mt-0">Perhatian !</h3>
 
-                                                <p class="w-75 mb-2 mx-auto">Mohon Periksa Kebali data yang anda inputkan sebelum tombol simpan diklik.</p>
+                                                <p class="w-75 mb-2 mx-auto">Mohon Periksa Kebali data yang anda
+                                                    inputkan sebelum tombol simpan diklik.</p>
 
                                                 <div class="mb-3">
                                                     <div class="form-check d-inline-block">
-                                                        <button type="submit" class="btn btn-warning mb-3 text-white" onclick="return confirm('Apakah yakin ingin menyimpan?');">Simpan</button>
+                                                        <button type="submit" class="btn btn-warning mb-3 text-white"
+                                                            onclick="return confirm('Apakah yakin ingin menyimpan?');">Simpan</button>
                                                     </div>
                                                 </div>
                                             </div>
-                                           
+
 
                                         </div> <!-- end col -->
                                     </div> <!-- end row -->
@@ -423,11 +426,11 @@ $('#jenjang_jabatan').on('change', function ()
                 $.each(res, function (key, value)
                 {
                     $('#jenjang_tingkat_jabatan').append('<option value="' + value.pelaksana + '">' + value.pelaksana +
-                    '</option>');
-                });
-                // console.log(res);
-            }
-        });
+                        '</option>');
+                    });
+                }
+            });
+            console.log(klasifikasi);
     });
 </script>
 @endsection

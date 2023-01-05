@@ -60,6 +60,13 @@
             </li>
 
             <li class="side-nav-item">
+                <a href="{{ route('prakoms.index') }}" class="side-nav-link">
+                    <i class="uil-calender"></i>
+                    <span> Pranata Komputer </span>
+                </a>
+            </li>
+
+            <li class="side-nav-item">
                 <a href="{{ route('roles.index') }}" class="side-nav-link">
                     <i class="uil-comments-alt"></i>
                     <span> Role </span>
