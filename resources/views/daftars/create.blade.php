@@ -79,7 +79,8 @@
                                                         <div class="row mb-3">
                                                             <div class="col-md-9">
                                                                 <input type="file" id="example-fileinput"
-                                                                    name="surat_pengantar" class="form-control">
+                                                                    name="surat_pengantar" class="form-control"
+                                                                    required>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -90,7 +91,30 @@
                                                         <div class="row mb-3">
                                                             <div class="col-md-9">
                                                                 <input type="file" id="example-fileinput"
-                                                                    name="laporan_kegiatan" class="form-control">
+                                                                    name="laporan_kegiatan" class="form-control"
+                                                                    required>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Pengembangan Profesi (Contoh : 23.120)</td>
+                                                    <td>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-2">
+                                                                <input type="text" name="pengembangan_profesi"
+                                                                    class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Unsur Penunjang (Contoh : 23.120)</td>
+                                                    <td>
+                                                        <div class="row mb-3">
+                                                            <div class="col-md-2">
+                                                                <input type="text" name="unsur_penunjang"
+                                                                    class="form-control" required>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -159,7 +183,7 @@
                                             class="form-control text-right" value="0">
                                     </div> <!-- end col -->
                                     <input type="hidden" name="id_butir[]" value="{{ $item->id }}">
-                                    <input type="hidden" name="id_jadwal[]" value="{{ $id_jadwal }}">
+                                    <input type="hidden" name="id_jadwal[]" value="{{ $daftarAju['id_jadwal'] }}">
                                     <input type="hidden" name="nip[]" value="{{ $data[0]->nip }}">
                                 </div>
                                 @endforeach
