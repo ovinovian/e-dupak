@@ -44,7 +44,6 @@ class DashboardController extends Controller
         }
         else {
             $data = 0;
-
             return view('dashboard',compact('data'));
         }
     }
