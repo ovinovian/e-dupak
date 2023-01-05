@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
     <html lang="en">
 
     <head>
@@ -37,12 +37,12 @@
 
                 </div>
                 <!-- content -->
-
+                @include('landing_page.layouts.footer.footer')
                 
 
             </div>
 
-            @include('landing_page.layouts.footer.footer')
+           
 
             <!-- ============================================================== -->
             <!-- End Page content -->
@@ -159,4 +159,5 @@
         <!-- end demo js-->
         @yield('script')
     </body>
-</html>
+</html> 
+
