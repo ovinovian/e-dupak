@@ -8,8 +8,14 @@
                     $foto =
                     \App\Models\Profil::where('nip',auth()->user()->nip)->first();
                     @endphp
+                    @if ($foto->foto == "")
+                    <img src="{{ asset('assets/images/users/user2.png') }}" alt="user-image"
+                    class="rounded-circle">
+                    @else
                     <img src="{{ asset('storage/images/foto/'.$foto->foto.'') }}" alt="user-image"
-                        class="rounded-circle">
+                    class="rounded-circle">
+                    @endif
+                   
                 </span>
                 <span>
                     @guest

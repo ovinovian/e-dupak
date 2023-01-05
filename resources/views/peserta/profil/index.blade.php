@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('style')
-
+<link rel="stylesheet" href="{{asset('assets/vendor/toastr/css/toastr.min.css')}}">
 @endsection
 
 @section('content')
@@ -19,7 +19,8 @@
                         <li class="breadcrumb-item"><a href="javascript: void(0);">Profil</a></li>
                     </ol>
                 </div>
-                <h4 class="page-title">Profil</h4>
+                <h4 class="page-title">Profil
+                </h4>
             </div>
         </div>
     </div>
@@ -300,7 +301,9 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('assets/vendor/toastr/js/toastr.min.js') }}"></script>
 <script src="{{ asset('assets/js/pages/demo.form-wizard.js') }}"></script>
+
 
 <script>
     $(document).ready(function(){
@@ -369,5 +372,46 @@ $('#jenjang_jabatan').on('change', function ()
             }
         });
     });
+
+    @if ($message = Session::get('success'))
+    toastr.success("{{ $message }}","Selamat", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"1000",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
+    @if ($message = Session::get('failed'))
+    toastr.danger("{{ $message }}","Perhatiaan !!", {
+        timeOut:5e3,
+        closeButton:!0,
+        debug:!1,
+        newestOnTop:!0,
+        progressBar:!0,
+        positionClass:"toast-top-right",
+        preventDuplicates:!0,
+        onclick:null,
+        showDuration:"1000",
+        hideDuration:"1000",
+        extendedTimeOut:"1000",
+        showEasing:"swing",
+        hideEasing:"linear",
+        showMethod:"fadeIn",
+        hideMethod:"fadeOut",
+        tapToDismiss:!1
+    });
+    @endif
 </script>
 @endsection
