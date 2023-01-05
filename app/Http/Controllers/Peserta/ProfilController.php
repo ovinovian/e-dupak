@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
+use Session;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\VwPrakom;
@@ -13,6 +14,7 @@ use App\Models\VwPrakomDetail;
 use App\Models\Profil;
 use App\Models\VwButirMin;
 use App\Models\User;
+
 
 class ProfilController extends Controller
 {
@@ -119,10 +121,16 @@ class ProfilController extends Controller
         }
                 
                 // dd($input);
-        Profil::create($input);
+        $simpan = Profil::create($input);
 
-        return redirect()->route('profil.index')
-                        ->with('success','Profil berhasil ditambahkan.');
+        if($simpan) {
+            return redirect()->route('profil.index')
+                            ->with('success','Profil berhasil ditambahkan.');
+        } else {
+            Session::flash('failed', 'Anda gagal menyimpan profil, ulangi kembali');
+            return redirect()->back();
+        }
+       
 
         // dd($request->all());
     }
@@ -239,7 +247,8 @@ class ProfilController extends Controller
             ]);
 
             return redirect()->route('profil.index')
-                        ->with('success','Profil berhasil ditambahkan.');
+                        ->with('success','Profil berhasil diubah.');
+            // Session::flash('berhasil', 'Anda berhail mengubah data profil');
         }
         else{
             // dd($request->all());
@@ -269,7 +278,8 @@ class ProfilController extends Controller
                 'email' => $request->email,
             ]);
             return redirect()->route('profil.index')
-                        ->with('success','Profil berhasil ditambahkan.');
+                        ->with('success','Profil berhasil diubah.');
+            // Session::flash('berhasil', 'Anda berhail mengubah data profil');
         }
 
     }

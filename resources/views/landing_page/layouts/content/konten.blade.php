@@ -3,6 +3,7 @@
 @section('style')
 <link href="{{ asset('assets/css/vendor/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet" type="text/css">
 <link href="{{asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 <style>
     .card-1 {
         background-color: rgb(255, 204, 204);
@@ -27,7 +28,14 @@
 
     <!-- start page title -->
     <!-- end page title -->
-
+    @if(Session::has('success'))
+    <div class="alert alert-danger">
+      {{ Session::get('success')}}
+    </div>
+    @endif
+    <div class="alert alert-danger">
+       Error
+      </div>
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card mt-3">
@@ -139,6 +147,9 @@
 <script src="{{ asset('assets/js/vendor/apexcharts.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-jvectormap-1.2.2.min.js') }}"></script>
 <script src="{{ asset('assets/js/vendor/jquery-jvectormap-world-mill-en.js') }}"></script>
+
+<script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+<script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
 <!-- third party js ends -->
 
 <script src="{{ asset('assets/js/vendor/dataTables.buttons.min.js') }}"></script>
@@ -150,5 +161,16 @@
 
 <!-- demo app -->
 <script src="{{ asset('assets/js/pages/demo.dashboard-analytics.js') }}"></script>
-<!-- end demo js-->
+
+<script>
+    @if ($message = Session::get('success'))
+        swal(
+            "Perhatian !!!",
+            "{{ $message }}",
+            "warning"
+        )
+    @endif
+</script>
+
+
 @endsection

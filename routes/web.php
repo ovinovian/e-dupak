@@ -11,6 +11,7 @@ use App\Http\Controllers\Peserta\ProfilController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\TimController;
 use App\Http\Controllers\PrakomController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +38,10 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //Peserta
     // Route::get('peserta/profil', [ProfilController::class, 'index'])->name('profil.peserta');

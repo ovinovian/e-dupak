@@ -59,22 +59,20 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="password" class="form-label text-md">{{
-                                        __('Password') }}
-                                        <div class="input-group input-group-merge">
-                                            <input id="password" type="password"
-                                                class="form-control @error('password') is-invalid @enderror"
-                                                name="password" required autocomplete="current-password">
-                                            <div class="input-group-text" data-password="false">
-                                                <span class="password-eye"></span>
-                                            </div>
-
-                                            @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                            @enderror
+                                    <label for="password" class="form-label">{{
+                                        __('Password') }}</label>
+                                    <div class="input-group input-group-merge">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required  autocomplete="current-password">
+                                        <div class="input-group-text" data-password="false">
+                                            <span class="password-eye"></span>
                                         </div>
+                                    </div>
+
+                                     @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                     @enderror
                                 </div>
 
                                 <div class="mb-3 mb-0 text-center">
