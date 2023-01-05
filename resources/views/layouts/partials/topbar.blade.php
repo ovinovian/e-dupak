@@ -5,14 +5,30 @@
                 role="button" aria-haspopup="false" aria-expanded="false">
                 <span class="account-user-avatar">
                     @php
-                    $foto =
-                    \App\Models\Profil::where('nip',auth()->user()->nip)->first();
+                    
+                    $ct_foto =
+                    \App\Models\Profil::where('nip',auth()->user()->nip)->count();
+
+                    if($ct_foto == 0) {
+                        $foto = "kosong";
+                    } else {
+                       
+                        $dt_foto = \App\Models\Profil::select('profil.foto')->where('nip',auth()->user()->nip)->first();
+                        $dataa = $dt_foto->foto;
+
+                        if ($dataa != '') {
+                            $foto = "ada";
+                        } else {
+                            $foto = "kosong";
+                        }
+                    }
+
                     @endphp
-                    @if ($foto->foto == "")
+                    @if ($foto === "kosong" )
                     <img src="{{ asset('assets/images/users/user2.png') }}" alt="user-image"
                     class="rounded-circle">
                     @else
-                    <img src="{{ asset('storage/images/foto/'.$foto->foto.'') }}" alt="user-image"
+                    <img src="{{ asset('storage/images/foto/'.$dataa.'') }}" alt="user-image"
                     class="rounded-circle">
                     @endif
                    

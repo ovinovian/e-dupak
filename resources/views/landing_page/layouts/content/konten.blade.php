@@ -29,13 +29,16 @@
     <!-- start page title -->
     <!-- end page title -->
     @if(Session::has('success'))
-    <div class="alert alert-danger">
-      {{ Session::get('success')}}
+    <div class="row mt-2">
+        <div class="col-md-12">
+            <div class="alert alert-warning alert-dismissible bg-warning text-white border-0 fade show" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <strong>Perhatian !! - </strong> {{ Session::get('success')}}
+            </div>
+        </div>
     </div>
     @endif
-    <div class="alert alert-danger">
-       Error
-      </div>
+    
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card mt-3">

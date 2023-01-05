@@ -5,13 +5,36 @@
 <!-- SimpleMDE css -->
 <link href="{{ asset('assets/css/vendor/simplemde.min.css') }}" rel="stylesheet" type="text/css">
 
+<style>
+    .new-button3 {
+        display: inline-block;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #5a5a5a;
+        font-size: 16px;
+        color: #fff;
+    }
+
+    input[type="file"] {
+        position: absolute;
+        z-index: -1;
+        top: 6px;
+        left: 0;
+        font-size: 15px;
+        color: rgb(153, 153, 153);
+    }
+</style>
+
 @endsection
 
 @section('content')
 
 <div class="container-fluid">
-    <form action="{{ route('daftars.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('daftars.update',$daftar->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
+
         <div class="row mt-3">
             <div class="col-xxl-12 col-xl-12">
                 <div class="tab-content">
@@ -57,7 +80,8 @@
                                                         <div class="col-md-2">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
-                                                                    name="mk_tahun_baru" required>
+                                                                    name="mk_tahun_baru"
+                                                                    value="{{ $daftar->mk_tahun_baru }}">
                                                                 <span class="input-group-text"
                                                                     id="basic-addon2">Tahun</span>
                                                             </div>
@@ -66,7 +90,8 @@
                                                         <div class="col-md-2">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
-                                                                    name="mk_bulan_baru" required>
+                                                                    name="mk_bulan_baru"
+                                                                    value="{{ $daftar->mk_bulan_baru }}">
                                                                 <span class="input-group-text"
                                                                     id="basic-addon2">Bulan</span>
                                                             </div>
@@ -78,9 +103,19 @@
                                                     <td>
                                                         <div class="row mb-3">
                                                             <div class="col-md-9">
-                                                                <input type="file" id="example-fileinput"
-                                                                    name="surat_pengantar" class="form-control"
-                                                                    required>
+                                                                <div style="position: relative">
+                                                                    <label for="formFile3" class="new-button3">Upload
+                                                                        Surat Pengantar</label>
+                                                                    <input class="form-control" type="file"
+                                                                        id="formFile3" name="surat_pengantar"
+                                                                        accept=".pdf"
+                                                                        value="{{ $daftar->surat_pengantar }}">
+                                                                    <p
+                                                                        style="word-break: break-word; border-bottom:1px solid rgb(161, 161, 161); width:100% ">
+                                                                        <span id="lihat_surat_pengantar">{{
+                                                                            $daftar->surat_pengantar }}</span>
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -90,9 +125,19 @@
                                                     <td>
                                                         <div class="row mb-3">
                                                             <div class="col-md-9">
-                                                                <input type="file" id="example-fileinput"
-                                                                    name="laporan_kegiatan" class="form-control"
-                                                                    required>
+                                                                <div style="position: relative">
+                                                                    <label for="formFile4" class="new-button3">Upload
+                                                                        Laporan Kegiatan</label>
+                                                                    <input class="form-control" type="file"
+                                                                        id="formFile4" name="laporan_kegiatan"
+                                                                        accept=".pdf"
+                                                                        value="{{ $daftar->laporan_kegiatan }}">
+                                                                    <p
+                                                                        style="word-break: break-word; border-bottom:1px solid rgb(161, 161, 161); width:100% ">
+                                                                        <span id="lihat_laporan_kegiatan">{{
+                                                                            $daftar->laporan_kegiatan }}</span>
+                                                                    </p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -103,7 +148,8 @@
                                                         <div class="row mb-3">
                                                             <div class="col-md-2">
                                                                 <input type="text" name="pengembangan_profesi"
-                                                                    class="form-control" required>
+                                                                    class="form-control"
+                                                                    value="{{ $daftar->pengembangan_profesi }}">
                                                             </div>
                                                         </div>
                                                     </td>
@@ -114,7 +160,8 @@
                                                         <div class="row mb-3">
                                                             <div class="col-md-2">
                                                                 <input type="text" name="unsur_penunjang"
-                                                                    class="form-control" required>
+                                                                    class="form-control"
+                                                                    value="{{ $daftar->unsur_penunjang }}">
                                                             </div>
                                                         </div>
                                                     </td>
@@ -162,7 +209,8 @@
                                 @endif
                                 @if($item->no_sub_unsur != $no_sub_unsur)
                                 <div class="row mb-2">
-                                    <div class="col-md-12"><button type="button" class="btn btn-success" disabled>>>>
+                                    <div class="col-md-12"><button type="button" class="btn btn-success"
+                                            disabled>&nbsp;&nbsp;&nbsp;&nbsp;
                                             Sub
                                             Unsur : {{
                                             $item->no_sub_unsur }}. {{ $item->sub_unsur }}</div> <!-- end col -->
@@ -174,18 +222,24 @@
                                 <div class="row mb-2">
                                     <!-- end col -->
                                     <div class="col-sm-8"><button type="button" class="btn btn-outline-info text-left"
-                                            disabled>>>>>>>
+                                            disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             Uraian Kegiatan : {{ $item->no_uraian_kegiatan }}. {{
                                             $item->uraian_kegiatan
                                             }}
                                     </div> <!-- end col -->
+                                    @php
+                                    $nilai =
+                                    App\Models\DaftarDetail::where('id_jadwal',$daftar->id_jadwal)->where('id_butir',
+                                    $item->id)->first();
+                                    @endphp
                                     <div class="col-sm-1"><input type="text" name="nilai[]"
-                                            class="form-control text-right" value="0">
+                                            class="form-control text-end" value="{{ $nilai->nilai }}">
                                     </div> <!-- end col -->
                                     <input type="hidden" name="id_butir[]" value="{{ $item->id }}">
                                     {{-- <input type="hidden" name="id_jadwals[]" value="{{ $daftar[0]['id_daftar'] }}">
                                     --}}
                                     <input type="hidden" name="nip[]" value="{{ $data[0]->nip }}">
+                                    <input type="hidden" name="id_detail[]" value="{{ $nilai->id }}">
                                 </div>
                                 @endforeach
                             </div>
@@ -195,11 +249,12 @@
                     </div>
                 </div>
             </div>
+            <input type="hidden" name="id_daftar" value="{{ $daftar->id }}">
 
         </div><!-- end col -->
         <button type="submit" class="btn btn-danger mb-3"
-            onclick="return confirm('Apakah yakin sudah mengisi yang diinginkan?');"><i class=" mdi mdi-minus"></i>
-            Simpan</button>
+            onclick="return confirm('Apakah Anda yakin ingin merubah?');"><i class=" mdi mdi-minus"></i>
+            Rubah</button>
     </form>
 </div> <!-- container -->
 
@@ -212,4 +267,16 @@
 
 <!-- Page init js -->
 <script src="{{ asset('assets/js/pages/demo.inbox.js') }}"></script>
+
+<script>
+    $(function(){
+        $('input[name=surat_pengantar]').change(function(){
+            $('#lihat_surat_pengantar').html("File yang diupload : " + $(this).val()  );
+        });
+
+        $('input[name=laporan_kegiatan]').change(function(){
+            $('#lihat_laporan_kegiatan').html("File yang diupload : " + $(this).val() );
+        });
+    });
+</script>
 @endsection

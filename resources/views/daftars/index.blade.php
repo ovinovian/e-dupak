@@ -7,6 +7,7 @@
 <link href="{{ asset('assets/css/vendor/responsive.bootstrap5.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/vendor/buttons.bootstrap5.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/vendor/select.bootstrap5.css') }}" rel="stylesheet" type="text/css">
+<link href="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.css') }}" rel="stylesheet">
 <!-- third party css end -->
 
 @endsection
@@ -187,7 +188,7 @@
                                             <div class="row mb-2">
                                                 <div class="col-md-1">
                                                     @if($daftarAju[0]['status_daftar']==2)
-                                                    <button class="btn btn-success disabled" disabled>Rubah</button>
+                                                    <button class="btn btn-primary disabled" disabled>Rubah</button>
                                                     @else
                                                     <a class="btn btn-primary"
                                                         href="{{ route('daftars.edit',$daftarAju[0]['id_daftar']) }}">Rubah</a>
@@ -372,6 +373,9 @@
     <script src="{{ asset('assets/js/vendor/buttons.print.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/dataTables.keyTable.min.js') }}"></script>
     <script src="{{ asset('assets/js/vendor/dataTables.select.min.js') }}"></script>
+
+    <script src="{{ asset('assets/vendor/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script src="{{ asset('assets/js/sweetalert.init.js')}}"></script>
     <!-- third party js ends -->
 
     <!-- demo app -->
@@ -382,6 +386,16 @@
         if( $('.message').is(':visible') ) {
         $(".message").fadeOut(2000);
     }
+    </script>
+
+    <script>
+        @if ($message = Session::get('success'))
+            swal(
+                "Selamat ....",
+                "{{ $message }}",
+                "success"
+            )
+        @endif
     </script>
 
     @endsection
