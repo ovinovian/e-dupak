@@ -92,7 +92,7 @@
                 <div class="card-body">
                     <i class='uil uil-users-alt float-end'></i>
                     <h6 class="text-uppercase mt-0">Prakom Terdaftar</h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
+                    <h2 class="my-2">0</h2>
                 </div> <!-- end card-body-->
             </div>
             <!--end card-->
@@ -103,7 +103,7 @@
                 <div class="card-body">
                     <i class='uil uil-users-alt float-end'></i>
                     <h6 class="text-uppercase mt-0">Prakom Daftar Penilaian</h6>
-                    <h2 class="my-2" id="active-views-count">0</h2>
+                    <h2 class="my-2">0</h2>
                 </div> <!-- end card-body-->
             </div>
             <!--end card-->
@@ -113,7 +113,7 @@
                 <div class="card-body">
                     <i class='uil uil-users-alt float-end'></i>
                     <h6 class="text-uppercase mt-0">Prakom Syarat Minimal </h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
+                    <h2 class="my-2">0</h2>
                 </div> <!-- end card-body-->
             </div>
             <!--end card-->
@@ -124,7 +124,7 @@
                 <div class="card-body">
                     <i class='uil uil-users-alt float-end'></i>
                     <h6 class="text-uppercase mt-0">Prakom Belum Syarat Minimal</h6>
-                    <h2 class="my-2" id="active-users-count">0</h2>
+                    <h2 class="my-2">0</h2>
                 </div> <!-- end card-body-->
             </div>
             <!--end card-->

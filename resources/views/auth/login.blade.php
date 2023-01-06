@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/users/16.png')}}">
 
     <!-- App css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -26,17 +25,34 @@
                     <div class="card">
 
                         <!-- Logo -->
-                        <div class="card-header pt-4 pb-4 text-center bg-primary">
-                            {{ __('Login') }}
-                            <a href="index.html">
-                                <span><img src="{{ asset('assets/images/logo.png') }}" alt="" height="18"></span>
+                        <div class="card-header pt-4 pb-4 text-center bg-white" >
+                            <a href="{{url('/')}}">
+                                <span><img src="{{ ('assets/images/logo-light.png') }}" alt="" style="width: 200px"></span>
                             </a>
                         </div>
 
-                        <div class="card-body p-4">
-
+                        <div class="card-body p-2">
+                            @if(Session::has('sukses'))
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>{{ Session::get('sukses')}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if(Session::has('failled'))
+                            <div class="row mt-2">
+                                <div class="col-md-12">
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>{{ Session::get('failled')}}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">e-dupak apps</h4>
                                 <h4 class="text-dark-50 text-center pb-0 fw-bold">Masuk</h4>
                                 <p class="text-muted mb-4">Masukkan Email dan Password Anda
                                 </p>
@@ -51,6 +67,7 @@
                                     <input id="email" type="email"
                                         class="form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                   
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

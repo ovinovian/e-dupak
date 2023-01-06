@@ -48,7 +48,7 @@
             @can('profil-list')
             <li class="side-nav-item">
                 <a href="{{ route('profil.index') }}" class="side-nav-link">
-                    <i class="uil-store"></i>
+                    <i class="uil-user-square"></i>
                     <span> Profil Peserta </span>
                 </a>
             </li>
@@ -56,7 +56,7 @@
             @can('user-list')
             <li class="side-nav-item">
                 <a href="{{ route('users.index') }}" class="side-nav-link">
-                    <i class="uil-calender"></i>
+                    <i class="uil-user-circle"></i>
                     <span> User </span>
                 </a>
             </li>
@@ -80,7 +80,7 @@
             @can('perm-list')
             <li class="side-nav-item">
                 <a href="{{ route('perms.index') }}" class="side-nav-link">
-                    <i class="uil-comments-alt"></i>
+                    <i class="uil-padlock"></i>
                     <span> Permission </span>
                 </a>
             </li>
@@ -88,7 +88,7 @@
             @can('jadwal-list')
             <li class="side-nav-item">
                 <a href="{{ route('jadwals.index') }}" class="side-nav-link">
-                    <i class="uil-store"></i>
+                    <i class="mdi mdi-text-box-plus-outline"></i>
                     <span> Jadwal </span>
                 </a>
             </li>
@@ -96,7 +96,7 @@
             @can('daftar-list')
             <li class="side-nav-item">
                 <a href="{{ route('daftars.index') }}" class="side-nav-link">
-                    <i class="uil-store"></i>
+                    <i class="uil-edit"></i>
                     <span> Daftar </span>
                 </a>
             </li>
@@ -104,7 +104,7 @@
             @can('tim-list')
             <li class="side-nav-item">
                 <a href="{{ route('tims.index') }}" class="side-nav-link">
-                    <i class="uil-envelope"></i>
+                    <i class="mdi mdi-account-supervisor"></i>
                     <span> Tim Penilai </span>
                 </a>
             </li>

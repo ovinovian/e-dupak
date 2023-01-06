@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/users/16.png')}}">
 
     <!-- App css -->
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
@@ -26,12 +25,12 @@
                 <div class="col-xxl-4 col-lg-5">
                     <div class="card">
                         <!-- Logo-->
-                        <div class="card-header pt-4 pb-4 text-center bg-primary">
-                            <a href="index.html">
-                                <span><img src="{{ ('assets/images/logo.png') }}" alt="" height="18"></span>
+                        <div class="card-header pt-4 pb-4 text-center bg-white"">
+                            <a href="{{url('/')}}">
+                                <span><img src="{{ ('assets/images/logo-light.png') }}" alt="" style="width: 200px"></span>
                             </a>
                         </div>
-
+                       
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
