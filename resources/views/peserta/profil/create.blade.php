@@ -361,7 +361,16 @@
 <script src="{{ asset('assets/js/pages/demo.form-wizard.js') }}"></script>
 
 <script>
-    $('#last-button').prop('disabled', true);
+    @if ($message = Session::get('failed'))
+        swal(
+            "Perhatian !!!",
+            "{{ $message }}",
+            "danger"
+        )
+    @endif
+</script>
+<script>
+$('#last-button').prop('disabled', true);
 $(document).ready(function(){
 
     $('#pilih_kerja').click(function() {

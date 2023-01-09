@@ -94,7 +94,7 @@ class ProfilController extends Controller
             'mk_tahun_baru' => 'required',
             'mk_bulan_baru' => 'required',
             'unit_kerja' => 'required',
-            'foto' => 'required|mimes:jpg,jpeg,png',
+            'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
         ]);
         
         $input = $request->all();
