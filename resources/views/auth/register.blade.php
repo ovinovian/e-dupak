@@ -32,7 +32,11 @@
                         </div>
                        
                         <div class="card-body p-4">
-
+                            @if(count($errors) > 0)
+                            @foreach($errors->all() as $error)
+                                <div class="alert alert-danger">{{ $error }}</div>
+                            @endforeach
+                            @endif
                             <div class="text-center w-75 m-auto">
                                 <h4 class="text-dark-50 text-center mt-0 fw-bold">{{ __('Daftar Akun') }}</h4>
                             </div>
@@ -42,9 +46,12 @@
                                 <div class="mb-3">
                                     <label for="nip" class="col-md-4 col-form-label text-md">{{ __('NIP')
                                         }}</label>
-                                    <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror"
-                                        name="nip" value="{{ old('nip') }}" required autocomplete="nip" autofocus>
+                                    <input id="nip" type="text" class="nip-validate form-control @error('nip') is-invalid @enderror"
+                                        name="nip" value="{{ old('nip') }}" required autocomplete="nip" maxlength="18" autofocus>
+                                    
+                                    <div id="error-nip" style="display: none" class="text-danger">
 
+                                    </div>
                                     @error('nip')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -73,8 +80,10 @@
                                         }}</label>
 
                                     <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
+                                        class="email-valid form-control @error('email') is-invalid @enderror" name="email"
                                         value="{{ old('email') }}" required autocomplete="email">
+                                    
+                                    <div id="error_email" style="display: none" class="text-danger"></div>
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -83,7 +92,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3">
                                     <label for="password" class="col-md-6 col-form-label text-md">{{ __('Password')
                                         }}</label>
 
@@ -98,7 +107,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="row mb-3">
+                                <div class="mb-3">
                                     <label for="password-confirm" class="col-md-4 col-form-label text-md">{{
                                         __('Confirm
                                         Password') }}</label>
@@ -141,7 +150,37 @@
     <!-- bundle -->
     <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
     <script src="{{ asset('assets/js/app.min.js') }}"></script>
+    <script>
+        $('.nip-validate').keyup(function(){
+
+            this.value = this.value.replace(/[^0-9\.]/g,'');
+            var validNip = $(this).val().length;
+            if(validNip == 0) {
+              $('#error-nip').hide();
+            
+            } else if(validNip > 0 && validNip <= 17) {
+                 $('#error-nip').text("NIP harus 18 karakter angka").show();
+            } else {
+                 $('#error-nip').hide();
+            }
+            
+        });
+        $('.email-valid').keyup(function(){
+            var emailGet = $('.email-valid').val();
+            var regEmail = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if(!regEmail.test(emailGet)) {
+            $('#error_email').html("<span style='color:blue'>-->> "+emailGet+"</span>" + "<br>" +"<span style='font-weight:bold'> format email tidak sesuai</span>").show();
+            emailGet.focus;
+            } else if (emailGet == '') {
+            $('#error_email').hide();
+            } else {
+            $('#error_email').hide();
+            }
+            
+        });
+    </script>
 
 </body>
+
 
 </html>

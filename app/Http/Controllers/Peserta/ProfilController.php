@@ -75,14 +75,14 @@ class ProfilController extends Controller
     public function store(Request $request)
     {
         
-        request()->validate([
+        request()->validate(
+            [
             'nik' => 'required',
             'karpeg' => 'required',
             't_lahir' => 'required',
             'tgl_lahir' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
-        //     'pangkat' => 'required',
             'golongan' => 'required',
             'tmt_pangkat' => 'required',
             'jabatan' => 'required',
@@ -95,7 +95,31 @@ class ProfilController extends Controller
             'mk_bulan_baru' => 'required',
             'unit_kerja' => 'required',
             'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
-        ]);
+        ],
+        [
+            'nik.required' => 'Nik tidak boleh kosong',
+            'karpeg.required' => 'Karpeg tidak boleh kosong',
+            't_lahir.required' => 'Tempat lahir tidak boleh kosong',
+            'tgl_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+            'jk.required' => 'Jenis kelamin tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'golongan.required' => 'Golongan tidak boleh kosong',
+            'tmt_pangkat.required' => 'TMT tidak boleh kosong',
+            'jabatan.required' => 'Jabatan tidak boleh kosong',
+            'jenjang_jabatan.required' => 'Jenjang jabatan tidak boleh kosong',
+            'jenjang_tingkat_jabatan.required' => 'Jenjang tingkat jabatan tidak boleh kosong',
+            'tmt_jabatan.required' => 'TMT jabatan tidak boleh kosong',
+            'mk_tahun_lama.required' => 'Masa kerja tidak boleh kosong',
+            'mk_bulan_lama.required' => 'Masa kerja tidak boleh kosong',
+            'mk_tahun_baru.required' => 'Masa kerja tidak boleh kosong',
+            'mk_bulan_baru.required' => 'Masa kerja tidak boleh kosong',
+            'unit_kerja.required' => 'Unit kerja tidak boleh kosong',
+            'foto.required' => 'Foto tidak boleh kosong',
+            'foto.mimes' => 'Format foto anda tidak sesuai',
+            'foto.max' => 'Ukuran foto maksimal 2 MB',
+        ]
+    
+    );
         
         $input = $request->all();
         
@@ -182,7 +206,6 @@ class ProfilController extends Controller
             'tgl_lahir' => 'required',
             'jk' => 'required',
             'alamat' => 'required',
-        //     'pangkat' => 'required',
             'golongan' => 'required',
             'tmt_pangkat' => 'required',
             'jabatan' => 'required',
@@ -194,7 +217,28 @@ class ProfilController extends Controller
             'mk_tahun_baru' => 'required',
             'mk_bulan_baru' => 'required',
             'unit_kerja' => 'required',
-        ]);
+        ],
+        [
+            'nik.required' => 'Nik tidak boleh kosong',
+            'karpeg.required' => 'Karpeg tidak boleh kosong',
+            't_lahir.required' => 'Tempat lahir tidak boleh kosong',
+            'tgl_lahir.required' => 'Tanggal lahir tidak boleh kosong',
+            'jk.required' => 'Jenis kelamin tidak boleh kosong',
+            'alamat.required' => 'Alamat tidak boleh kosong',
+            'golongan.required' => 'Golongan tidak boleh kosong',
+            'tmt_pangkat.required' => 'TMT tidak boleh kosong',
+            'jabatan.required' => 'Jabatan tidak boleh kosong',
+            'jenjang_jabatan.required' => 'Jenjang jabatan tidak boleh kosong',
+            'jenjang_tingkat_jabatan.required' => 'Jenjang tingkat jabatan tidak boleh kosong',
+            'tmt_jabatan.required' => 'TMT jabatan tidak boleh kosong',
+            'mk_tahun_lama.required' => 'Masa kerja tidak boleh kosong',
+            'mk_bulan_lama.required' => 'Masa kerja tidak boleh kosong',
+            'mk_tahun_baru.required' => 'Masa kerja tidak boleh kosong',
+            'mk_bulan_baru.required' => 'Masa kerja tidak boleh kosong',
+            'unit_kerja.required' => 'Unit kerja tidak boleh kosong',
+        ]
+    
+    );
         
         $input = $request->all();
 
@@ -211,8 +255,15 @@ class ProfilController extends Controller
         
         if ($request->hasfile('foto')) {
             request()->validate([
-                'foto' => 'required|mimes:jpg,jpeg,png',
-            ]);
+                'foto' => 'required|mimes:jpg,jpeg,png|max:2048',
+            ],
+            [
+                'foto.required' => 'Foto tidak boleh kosong',
+                'foto.mimes' => 'Format foto anda tidak sesuai',
+                'foto.max' => 'Ukuran foto maksimal 2 MB',
+            ]
+        
+        );
 
             $upload_path = 'public/images/foto/';
             $file = $request->file('foto');
@@ -252,26 +303,28 @@ class ProfilController extends Controller
         }
         else{
             // dd($request->all());
-            Profil::where('id', $id)->update([
-            'nik' => $request->nik,
-            'karpeg' => $request->karpeg,
-            't_lahir' => $request->t_lahir,
-            'tgl_lahir' => $tanggal_lahir,
-            'jk' => $request->jk,
-            'alamat' => $request->alamat,
-            'pangkat' => $pangkat,
-            'golongan' => $request->golongan,
-            'tmt_pangkat' => $tmt_pangkat,
-            'jabatan' => $request->jabatan,
-            'jenjang_jabatan' => $request->jenjang_jabatan,
-            'jenjang_tingkat_jabatan' => $request->jenjang_tingkat_jabatan,
-            'tmt_jabatan' => $tmt_jabatan,
-            'mk_tahun_lama' => $request->mk_tahun_lama,
-            'mk_bulan_lama' => $request->mk_bulan_lama,
-            'mk_tahun_baru' => $request->mk_tahun_baru,
-            'mk_bulan_baru' => $request->mk_bulan_baru,
-            'unit_kerja' => $request->unit_kerja,
-            ]);
+            Profil::where('id', $id)->update(
+                [
+                'nik' => $request->nik,
+                'karpeg' => $request->karpeg,
+                't_lahir' => $request->t_lahir,
+                'tgl_lahir' => $tanggal_lahir,
+                'jk' => $request->jk,
+                'alamat' => $request->alamat,
+                'pangkat' => $pangkat,
+                'golongan' => $request->golongan,
+                'tmt_pangkat' => $tmt_pangkat,
+                'jabatan' => $request->jabatan,
+                'jenjang_jabatan' => $request->jenjang_jabatan,
+                'jenjang_tingkat_jabatan' => $request->jenjang_tingkat_jabatan,
+                'tmt_jabatan' => $tmt_jabatan,
+                'mk_tahun_lama' => $request->mk_tahun_lama,
+                'mk_bulan_lama' => $request->mk_bulan_lama,
+                'mk_tahun_baru' => $request->mk_tahun_baru,
+                'mk_bulan_baru' => $request->mk_bulan_baru,
+                'unit_kerja' => $request->unit_kerja,
+                ]
+            );
 
             User::where('id', $id)->update([
                 'name' => $request->name,

@@ -2,6 +2,12 @@
 
 @section('style')
 
+<style>
+    .none-lis{
+        list-style: none;
+    }
+</style>
+
 <!-- SimpleMDE css -->
 <link href="{{ asset('assets/css/vendor/simplemde.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -77,7 +83,8 @@
                                                 <tr>
                                                     <td>Masa Kerja Penilaian Saat Ini</td>
                                                     <td>
-                                                        <div class="col-md-2">
+                                                        <div class="row">
+                                                        <div class="col-md-3">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
                                                                     name="mk_tahun_baru"
@@ -87,7 +94,9 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-2">
+                                                    </div>
+                                                        <div class="row">
+                                                        <div class="col-md-3">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
                                                                     name="mk_bulan_baru"
@@ -96,6 +105,7 @@
                                                                     id="basic-addon2">Bulan</span>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -193,55 +203,66 @@
                             {{ $no_unsur = "" }}
                             {{ $no_sub_unsur = "" }}
                             <div class="card-body">
+                               
                                 @foreach ($butir as $item)
-                                <!-- task -->
-                                @if($item->no_unsur != $no_unsur)
-                                <div class="row mb-2">
-                                    <div class="col-md-12"><button type="button" class="btn btn-primary" disabled>Unsur
+                               
+                                <ul class="list-unstyled">
+                                    @if($item->no_unsur != $no_unsur)
+                                    <li>
+                                        <div class="bg-success text-white w-50 p-1 mb-1">
+                                        Unsur
                                             : {{
                                             $item->no_unsur }}.
-                                            {{ $item->unsur }}</button>
-                                    </div> <!-- end col -->
+                                            {{ $item->unsur }}
+                                        </div>
                                     @php
                                     $no_unsur = $item->no_unsur;
                                     @endphp
-                                </div>
-                                @endif
-                                @if($item->no_sub_unsur != $no_sub_unsur)
-                                <div class="row mb-2">
-                                    <div class="col-md-12"><button type="button" class="btn btn-success"
-                                            disabled>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            Sub
-                                            Unsur : {{
-                                            $item->no_sub_unsur }}. {{ $item->sub_unsur }}</div> <!-- end col -->
-                                    @php
-                                    $no_sub_unsur = $item->no_sub_unsur;
-                                    @endphp
-                                </div>
-                                @endif
-                                <div class="row mb-2">
-                                    <!-- end col -->
-                                    <div class="col-sm-8"><button type="button" class="btn btn-outline-info text-left"
-                                            disabled>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            Uraian Kegiatan : {{ $item->no_uraian_kegiatan }}. {{
-                                            $item->uraian_kegiatan
-                                            }}
-                                    </div> <!-- end col -->
-                                    @php
-                                    $nilai =
-                                    App\Models\DaftarDetail::where('id_jadwal',$daftar->id_jadwal)->where('id_butir',
-                                    $item->id)->first();
-                                    @endphp
-                                    <div class="col-sm-1"><input type="text" name="nilai[]"
-                                            class="form-control text-end" value="{{ $nilai->nilai }}">
-                                    </div> <!-- end col -->
-                                    <input type="hidden" name="id_butir[]" value="{{ $item->id }}">
-                                    {{-- <input type="hidden" name="id_jadwals[]" value="{{ $daftar[0]['id_daftar'] }}">
-                                    --}}
+                                    </li>
+                                    @endif
+                                    <li>
+                                        <ul class="none-lis">
+                                            @if($item->no_sub_unsur != $no_sub_unsur)
+                                            <li><div class="bg-primary text-white w-50 p-1"> Sub
+                                                Unsur : {{
+                                                $item->no_sub_unsur }}. {{ $item->sub_unsur }}
+                                                </div>
+                                            @php
+                                            $no_sub_unsur = $item->no_sub_unsur;
+                                            @endphp
+                                            </li>
+                                            @endif
+
+                                            <li>
+                                                <ul class="none-lis">
+                                                    <li>
+                                                        @php
+                                                            $nilai =
+                                                             App\Models\DaftarDetail::where('id_jadwal',$daftar->id_jadwal)->where('id_butir',$item->id)->first();
+                                                        @endphp
+                                                        <div class="row mt-2">
+                                                           <div class="col-md-10">
+                                                            {{ $item->no_uraian_kegiatan }}.&nbsp;&nbsp;
+                                                            {{
+                                                                $item->uraian_kegiatan
+                                                            }}
+                                                           </div>
+                                                           <div class="col-md-2">
+                                                            <input type="text" name="nilai[]"
+                                                            class="form-control text-end" value="{{ $nilai->nilai }}">
+                                                           </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                     <input type="hidden" name="id_butir[]" value="{{ $item->id }}">
                                     <input type="hidden" name="nip[]" value="{{ $data[0]->nip }}">
                                     <input type="hidden" name="id_detail[]" value="{{ $nilai->id }}">
-                                </div>
-                                @endforeach
+                                </ul> 
+                                @endforeach  
+                               
                             </div>
                             <!-- end task -->
 

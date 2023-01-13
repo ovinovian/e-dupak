@@ -54,7 +54,8 @@
                                                 <tr>
                                                     <td>Masa Kerja Penilaian Saat Ini</td>
                                                     <td>
-                                                        <div class="col-md-2">
+                                                        <div class="row">
+                                                        <div class="col-md-3">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
                                                                     name="mk_tahun_baru" required>
@@ -63,7 +64,9 @@
                                                             </div>
 
                                                         </div>
-                                                        <div class="col-md-2">
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
                                                             <div class="input-group mb-3 position-relative">
                                                                 <input type="text" class="form-control"
                                                                     name="mk_bulan_baru" required>
@@ -71,6 +74,7 @@
                                                                     id="basic-addon2">Bulan</span>
                                                             </div>
                                                         </div>
+                                                    </div>
                                                     </td>
                                                 </tr>
                                                 <tr>

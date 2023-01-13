@@ -223,20 +223,23 @@
                                                     $daftarAju[0]['mk_bulan_baru'] }} Baru
                                                 </div>
                                             </div>
-                                            <div class="row mb-2">
+                                            <div class="row mb-2 mt-4">
                                                 <div class="col-md-4">Surat Pengantar
                                                 </div>
-                                                <div class="col-md-3"><iframe src="{{ asset('storage/documents/'.$daftarAju[0]['surat_pengantar'].'')
+                                                <div class="col-md-3">
+                                                    <a href="{{ asset('storage/documents/'.$daftarAju[0]['surat_pengantar'].'')
+                                                }}" class="btn btn-primary" role="button" target="_blank"  style="margin-bottom: 10px">Lihat Dokumen</a>
+                                                    <iframe src="{{ asset('storage/documents/'.$daftarAju[0]['surat_pengantar'].'')
                                                     }}" frameborder="0"></iframe>
 
                                                 </div>
                                             </div>
-                                            <div class="row mb-2">
+                                            <div class="row mb-2 mt-4">
                                                 <div class="col-md-4">Laporan Kegiatan
                                                 </div>
-                                                <div class="col-md-3"><iframe src="{{ asset('storage/documents/'.$daftarAju[0]['laporan_kegiatan'].'')
-                                                                                                }}"
-                                                        frameborder="0"></iframe>
+                                                <div class="col-md-3">
+                                                    <a href="{{asset('storage/documents/'.$daftarAju[0]['laporan_kegiatan'].'')}}" class="btn btn-primary" role="button" target="_blank" style="margin-bottom: 10px">Lihat Dokumen</a>
+                                                    <iframe src="{{ asset('storage/documents/'.$daftarAju[0]['laporan_kegiatan'].'') }}" frameborder="0"></iframe>
 
                                                 </div>
                                             </div>

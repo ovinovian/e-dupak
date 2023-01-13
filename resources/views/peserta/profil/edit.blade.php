@@ -47,6 +47,11 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+                    @if(count($errors) > 0)
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
                     <h4 class="header-title mb-3"> Ubah Profil</h4>
                     <form action="{{ route('peserta.ubah.profil', ['id' => Auth::id()]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
